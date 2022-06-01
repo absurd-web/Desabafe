@@ -11,3 +11,4 @@ Na pasta execute:
 `npx react-native start`
 e
 `npx react-native run-android`
+para rodar em um dispositivo android conectado com depuração usb ligada ou em um emulador do Android Studio.
