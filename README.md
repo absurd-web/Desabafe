@@ -7,8 +7,8 @@ O app está sendo desenvolvido para dispositivos móveis (ios e android), consis
 ## Executando
 Installe e faça o setup do Android Studio segundo as instruções [aqui](https://reactnative.dev/docs/environment-setup).
 Faça o download do repositório.
-Na pasta execute:
-`npx react-native start`
-e
-`npx react-native run-android`
+Na pasta execute:  
+`npx react-native start`  
+e  
+`npx react-native run-android`  
 para rodar em um dispositivo android conectado com depuração usb ligada ou em um emulador do Android Studio.
