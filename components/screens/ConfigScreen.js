@@ -29,7 +29,7 @@ const ConfigScreen = ({route, navigation}) =>{
                 await AsyncStorage.setItem('@token', jsonRes.token);
                 setIsError(false);
                 setMessage('Mudando para anônimo...');
-                navigation.replace('Splash',{goal: 'Chat'});
+                navigation.navigate('Chat');
             }
         } catch (err) {
             console.log(err);
