@@ -10,19 +10,19 @@ Participantes: Israel Gomes Carneiro Filho, Kaio Nickollas Feitosa Forte, Nickol
 
 
 ## Executando
-Instale e faça o setup do Android Studio segundo as instruções [aqui](https://reactnative.dev/docs/environment-setup) ou conecte um celular Android com depuração USB ligada.
-Clone o repositório:
-`git clone`
-Installe as dependências:
-`npm install`
-Na pasta root execute:
+Instale e faça o setup do Android Studio segundo as instruções [aqui](https://reactnative.dev/docs/environment-setup) ou conecte um celular Android com depuração USB ligada.  
+Clone o repositório:  
+`git clone`  
+Installe as dependências:  
+`npm install`  
+Na pasta root execute:  
 `npx react-native start`  
 e  
-`npx react-native run-android` 
-Mova para o ./backend:
-`cd backend`
-Execute o servidor de backend:
-`npx nodemon ./app.js`
+`npx react-native run-android`  
+Mova para o ./backend:  
+`cd backend`  
+Execute o servidor de backend:  
+`npx nodemon ./app.js`  
 Rode um servidor de mysql com esse [banco de dados](https://github.com/absurd-web/Desabafe/blob/122f038bb1a1cf503cbad98002b0d72d2a47bd72/desabafe.sql) instalado.
 
 ## Mapeamento de funcionalidades
