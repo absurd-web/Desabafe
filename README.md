@@ -10,13 +10,21 @@ Participantes: Israel Gomes Carneiro Filho, Kaio Nickollas Feitosa Forte, Nickol
 
 
 ## Executando
-Instale e faça o setup do Android Studio segundo as instruções [aqui](https://reactnative.dev/docs/environment-setup).
-Faça o download do repositório.
-Na pasta execute:  
+Instale e faça o setup do Android Studio segundo as instruções [aqui](https://reactnative.dev/docs/environment-setup) ou conecte um celular Android com depuração USB ligada.
+Clone o repositório:
+`git clone`
+Installe as dependências:
+`npm install`
+Na pasta root execute:
 `npx react-native start`  
 e  
-`npx react-native run-android`  
-para rodar em um dispositivo android conectado com depuração usb ligada ou em um emulador do Android Studio.
+`npx react-native run-android` 
+Mova para o ./backend:
+`cd backend`
+Execute o servidor de backend:
+`npx nodemon ./app.js`
+Rode um servidor de mysql com esse [banco de dados](https://github.com/absurd-web/Desabafe/blob/122f038bb1a1cf503cbad98002b0d72d2a47bd72/desabafe.sql) instalado.
+
 ## Mapeamento de funcionalidades
 | Requisito  | Descrição | Codificação
 | ------------- | ------------- | ------------- |
@@ -38,18 +46,18 @@ para rodar em um dispositivo android conectado com depuração usb ligada ou em 
 | RF0016 Mudar imagem de perfil de usuário | Tanto para administrador como usuário padrão, para poderem alterar sua imagem de perfil, sendo a padrão caso o usuário esteja anônimo | Não começado |
 | RF0017 Alterar descrição do usuário | Uma breve descrição, de até 300 caracteres, do usuário. Que será exposta em sua tela de perfil e para o administrador que acessá-la | Em desenvolvimento |
 | RF0018 Visualizar estatísticas de escolhas dos alunos | Uma tela de estatísticas, contendo as opções mais escolhidas pelos alunos | Não começado |
-| RF0019 Acessar configurações | Menu de configurações, com funções como: alterar foto de perfil, encerrar sessão e trocar para o anônimo | Feito |
+| RF0019 Acessar configurações | Menu de configurações, com funções como: alterar foto de perfil, encerrar sessão e trocar para o anônimo | [Código](https://github.com/absurd-web/Desabafe/blob/e7759b0aa784546070f72a451c35a1b441a68b7a/components/screens/ConfigScreen.js) |
 | RF0020 Acessar menu “sobre” | Menu de descrição sobre o aplicativo | Em desenvolvimento |
 | RF0021 Filtrar mensagens | Filtrar mensagens de usuários por urgentes, não urgentes e ambos. | Não começado |
 | RF0022 Ver mensagens de cada categoria | Menu de mensagens por categoria, contendo mensagens de usuários autenticados ou anônimos | Não começado |
-| RF0023 Mensagem de email não cadastrado | Caso o email inserido na tela de login não estiver cadastrado, uma mensagem será exibida | Feito |
-| RF0024 Esconder senha ao digitar | A senha enquanto for digitada não será exibida | Feito |
-| RF0025 Exibir mensagem de erro ao cadastrar email inválido | Caso o email já esteja cadastrado, ou seja inválido | Feito |
-| RF0026 Conferir senhas no cadastro | Conferir se as senhas inseridas no campo “senha” e “confirmar senha” são iguais | Feito |
-| RF0027 Exibir nome de usuário | Na tela de configurações, exibir o nome do usuário | Feito |
-| RF0028 Exibir email do usuário logado | Na tela de configurações, exibir o email do usuário | Feito |
-| RF0029 Exibir mensagem de erro caso o campos de senha no login esteja vazio | Caso o campo de senha, na tela de login estiver vazio, um erro será exibido | Feito |
-| RF0030 Exibir mensagem de erro caso os campos de registro estejam vazios | Caso os campos estejam vazios, exibe mensagem de erro | Feito |
+| RF0023 Mensagem de email não cadastrado | Caso o email inserido na tela de login não estiver cadastrado, uma mensagem será exibida | [Código](https://github.com/absurd-web/Desabafe/blob/e7759b0aa784546070f72a451c35a1b441a68b7a/components/screens/LoginScreen.js#L61-L85) |
+| RF0024 Esconder senha ao digitar | A senha enquanto for digitada não será exibida | [Código](https://github.com/absurd-web/Desabafe/blob/e7759b0aa784546070f72a451c35a1b441a68b7a/components/screens/LoginScreen.js#L179) |
+| RF0025 Exibir mensagem de erro ao cadastrar email inválido | Caso o email já esteja cadastrado, ou seja inválido | [Código](https://github.com/absurd-web/Desabafe/blob/e7759b0aa784546070f72a451c35a1b441a68b7a/components/screens/LoginScreen.js#L61-L85) |
+| RF0026 Conferir senhas no cadastro | Conferir se as senhas inseridas no campo “senha” e “confirmar senha” são iguais | [Código](https://github.com/absurd-web/Desabafe/blob/e7759b0aa784546070f72a451c35a1b441a68b7a/components/screens/LoginScreen.js#L61-L85) |
+| RF0027 Exibir nome de usuário | Na tela de configurações, exibir o nome do usuário | [Código](https://github.com/absurd-web/Desabafe/blob/e7759b0aa784546070f72a451c35a1b441a68b7a/components/screens/ConfigScreen.js#L83-L84) |
+| RF0028 Exibir email do usuário logado | Na tela de configurações, exibir o email do usuário | [Código](https://github.com/absurd-web/Desabafe/blob/e7759b0aa784546070f72a451c35a1b441a68b7a/components/screens/ConfigScreen.js#L83-L84) |
+| RF0029 Exibir mensagem de erro caso o campos de senha no login esteja vazio | Caso o campo de senha, na tela de login estiver vazio, um erro será exibido | [Código](https://github.com/absurd-web/Desabafe/blob/e7759b0aa784546070f72a451c35a1b441a68b7a/components/screens/LoginScreen.js#L61-L85) |
+| RF0030 Exibir mensagem de erro caso os campos de registro estejam vazios | Caso os campos estejam vazios, exibe mensagem de erro | [Código](https://github.com/absurd-web/Desabafe/blob/e7759b0aa784546070f72a451c35a1b441a68b7a/components/screens/LoginScreen.js#L61-L85) |
 | RF0031 Exibir aviso de mensagem enviada com sucesso | Caso o desabafo livre seja enviado com sucesso, uma tela será exibida confirmando | Não começado |
 | RF0032 Exibir aviso de confirmação de envio da mensagem | Caso o usuário “clique em enviar mensagem”, uma tela de confirmação aparecerá | Não começado |
 
