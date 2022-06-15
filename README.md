@@ -24,10 +24,32 @@ para rodar em um dispositivo android conectado com depuração usb ligada ou em 
 | RF0002 Registro | Para o usuário se cadastrar no aplicativo, com email, senha e foto (caso queira) | [Front-End](https://github.com/absurd-web/Desabafe/blob/da133e67e43c4931cd0778f611ac02e0ba5cabf2/components/screens/LoginScreen.js#L86-L125), [Back-End](https://github.com/absurd-web/Desabafe/blob/da133e67e43c4931cd0778f611ac02e0ba5cabf2/backend/controllers/auth.js#L4-L42) |
 | RF0003 Logout (Encerrar sessão) | Deslogar do aplicativo, indo para tela inicial, podendo também entrar anônimo | [Código](https://github.com/absurd-web/Desabafe/blob/da133e67e43c4931cd0778f611ac02e0ba5cabf2/components/screens/ConfigScreen.js#L69-L76) |
 | RF0004 Deletar conta | Apagar a conta do sistema | [Código](https://github.com/absurd-web/Desabafe/blob/da133e67e43c4931cd0778f611ac02e0ba5cabf2/components/screens/ConfigScreen.js#L42-L68) |
+| RF0005 Recuperar senha | Para caso o usuário esqueça a senha | Em desenvolvimento |
+| RF0006 Ao administrador: acesso à tela de registro de mensagens dadas pelo usuário | Tela com todos envios dos usuários, incluindo sua prioridade, dados em tabelas e quantidade de envios por usuário (caso seja anônimo, não terá ela) | Não começado |
+| RF0007 Escolha de prioridade de mensagem | Prioridade de mensagem padrão ou urgente | Não começado |
+| RF0008 Envio de desabafo livre | Caixa de mensagem para o usuário enviar a mensagem independente de opções, texto livre. Para caso o usuário não deseje utilizar as opções predefinidas | Em desenvolvimento |
+| RF0009 Salvar rascunho de desabafo livre | Caso o usuário não queira enviar a mensagem no momento, mas também não queira apagar o que já está escrito, terá a possibilidade de salvar o rascunho do que já está escrito | Não começado |
 | RF0010 Tela inicial - Escolha de opções de diálogo | A tela inicial, contendo o mascote do aplicativo, terá 4 opções de diálogo por tela, cada uma delas redirecionando para outra tela com outras opções | [Código](https://github.com/absurd-web/Desabafe/blob/da133e67e43c4931cd0778f611ac02e0ba5cabf2/components/screens/ChatScreen.js) |
+| RF0011 Tela inicial - Redirecionamento | De acordo com as opções escolhidas pelo usuário, o sistema fará uma análise do caso e devolverá uma possível forma de resolver o problema (vídeo, texto, etc) | Em desenvolvimento |
 | RF0012 Tela inicial - Retornar à pergunta anterior | Caso o usuário tenha mudado de ideia quanto à opção, ou ache que pressionou a opção errada, poderá retornar à anterior, podendo fazer sua escolha novamente | [Código](https://github.com/absurd-web/Desabafe/blob/da133e67e43c4931cd0778f611ac02e0ba5cabf2/App.js#L15-L22) |
 | RF0013 Tela inicial - Confirmar opção | Ao escolher a opção dentre as 4, esta ficará marcada e um botão de confirmar aparecerá, para então ir até a próxima tela |[Código](https://github.com/absurd-web/Desabafe/blob/da133e67e43c4931cd0778f611ac02e0ba5cabf2/components/screens/ChatScreen.js) |
 | RF0014 Login anônimo | Caso nada esteja escrito na caixa de email da tela de login, aparecerá a opção de entrar anonimamente, onde seus desabafos não serão identificáveis pelos administradores | [Front-End](https://github.com/absurd-web/Desabafe/blob/da133e67e43c4931cd0778f611ac02e0ba5cabf2/components/screens/LoginScreen.js#L199), [Back-End](https://github.com/absurd-web/Desabafe/blob/da133e67e43c4931cd0778f611ac02e0ba5cabf2/backend/controllers/auth.js#L77-L80) |
 | RF0015 Trocar para o anônimo | Caso o usuário esteja logado, mas quer enviar uma mensagem anônima sem precisar se deslogar, poderá trocar para o anônimo, na tela de configurações | [Código](https://github.com/absurd-web/Desabafe/blob/da133e67e43c4931cd0778f611ac02e0ba5cabf2/components/screens/ConfigScreen.js#L15-L41) |
-
+| RF0016 Mudar imagem de perfil de usuário | Tanto para administrador como usuário padrão, para poderem alterar sua imagem de perfil, sendo a padrão caso o usuário esteja anônimo | Não começado |
+| RF0017 Alterar descrição do usuário | Uma breve descrição, de até 300 caracteres, do usuário. Que será exposta em sua tela de perfil e para o administrador que acessá-la | Em desenvolvimento |
+| RF0018 Visualizar estatísticas de escolhas dos alunos | Uma tela de estatísticas, contendo as opções mais escolhidas pelos alunos | Não começado |
+| RF0019 Acessar configurações | Menu de configurações, com funções como: alterar foto de perfil, encerrar sessão e trocar para o anônimo | Feito |
+| RF0020 Acessar menu “sobre” | Menu de descrição sobre o aplicativo | Em desenvolvimento |
+| RF0021 Filtrar mensagens | Filtrar mensagens de usuários por urgentes, não urgentes e ambos. | Não começado |
+| RF0022 Ver mensagens de cada categoria | Menu de mensagens por categoria, contendo mensagens de usuários autenticados ou anônimos | Não começado |
+| RF0023 Mensagem de email não cadastrado | Caso o email inserido na tela de login não estiver cadastrado, uma mensagem será exibida | Feito |
+| RF0024 Esconder senha ao digitar | A senha enquanto for digitada não será exibida | Feito |
+| RF0025 Exibir mensagem de erro ao cadastrar email inválido | Caso o email já esteja cadastrado, ou seja inválido | Feito |
+| RF0026 Conferir senhas no cadastro | Conferir se as senhas inseridas no campo “senha” e “confirmar senha” são iguais | Feito |
+| RF0027 Exibir nome de usuário | Na tela de configurações, exibir o nome do usuário | Feito |
+| RF0028 Exibir email do usuário logado | Na tela de configurações, exibir o email do usuário | Feito |
+| RF0029 Exibir mensagem de erro caso o campos de senha no login esteja vazio | Caso o campo de senha, na tela de login estiver vazio, um erro será exibido | Feito |
+| RF0030 Exibir mensagem de erro caso os campos de registro estejam vazios | Caso os campos estejam vazios, exibe mensagem de erro | Feito |
+| RF0031 Exibir aviso de mensagem enviada com sucesso | Caso o desabafo livre seja enviado com sucesso, uma tela será exibida confirmando | Não começado |
+| RF0032 Exibir aviso de confirmação de envio da mensagem | Caso o usuário “clique em enviar mensagem”, uma tela de confirmação aparecerá | Não começado |
 
