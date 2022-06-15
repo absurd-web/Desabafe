@@ -14,9 +14,9 @@ import {
     useColorScheme,
     View,
 } from 'react-native';
-const API_URL = 'http://192.168.0.4:5000';
+//const API_URL = 'http://192.168.0.4:5000';
 //const API_URL = 'http://10.99.30.61:5000';
-//const API_URL = 'http://localhost:5000';
+const API_URL = 'http://localhost:5000';
 const LoginScreen = ({navigation}) =>{
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
