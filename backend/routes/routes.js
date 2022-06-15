@@ -1,12 +1,16 @@
 express = require('express');
 
-var { signup, login, isAuth } = require('../controllers/auth.js');
+var { signup, login, loginAnon, deleteUser, isAuth } = require('../controllers/auth.js');
 
 const router = express.Router();
 
 router.post('/login', login);
 
+router.post('/loginAnon', loginAnon);
+
 router.post('/signup', signup);
+
+router.delete('/user', deleteUser);
 
 router.get('/private', isAuth);
 

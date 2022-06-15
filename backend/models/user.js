@@ -16,15 +16,14 @@ const User = sequelize.define('usuarios', {
    Email: {
       type: Sequelize.STRING,
    },
+   Nivel: {
+      type: Sequelize.INTEGER,
+   },
    Senha: {
       type: Sequelize.STRING,
       allowNull: false,
    },
    SenhaSal: {
-      type: Sequelize.STRING,
-      allowNull: true,
-   },
-   SenhaHashUsado: {
       type: Sequelize.STRING,
       allowNull: true,
    }},
