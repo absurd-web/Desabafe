@@ -4,6 +4,11 @@ Um aplicativo para envio de desabafos, criado para o instituto JPCM, pelo grupo 
 
 O app está sendo desenvolvido para dispositivos móveis (ios e android), consiste em uma forma dos alunos do instituto enviarem seus desabafos, ou serem redirecionados para possíveis soluções simples do problema, baseando-se em perguntas respondidas pelo usuário.
 
+Equipe: AlleyCat
+
+Participantes: Israel Gomes Carneiro Filho, Kaio Nickollas Feitosa Forte, Nickolas Gabriel Lima Rodrigues, Pedro Davi Vasconcelos Oliveira e Vitor Martins de Oliveira
+
+
 ## Executando
 Instale e faça o setup do Android Studio segundo as instruções [aqui](https://reactnative.dev/docs/environment-setup).
 Faça o download do repositório.
@@ -12,7 +17,7 @@ Na pasta execute:
 e  
 `npx react-native run-android`  
 para rodar em um dispositivo android conectado com depuração usb ligada ou em um emulador do Android Studio.
-## Mapeamento
+## Mapeamento de funcionalidades
 | Requisito  | Descrição | Codificação
 | ------------- | ------------- | ------------- |
 | RF0001 Login | Tanto para usuário como para administrador entrarem no sistema  | [Front-End](https://github.com/absurd-web/Desabafe/blob/da133e67e43c4931cd0778f611ac02e0ba5cabf2/components/screens/LoginScreen.js#L86-L125), [Back-End](https://github.com/absurd-web/Desabafe/blob/da133e67e43c4931cd0778f611ac02e0ba5cabf2/backend/controllers/auth.js#L44-L75) |
