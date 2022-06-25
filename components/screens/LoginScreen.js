@@ -162,14 +162,14 @@ const LoginScreen = ({navigation}) =>{
         <Text style={styles.title}>Desabafe</Text>
         {!isLogin &&
         <TextInput
-          placeholder={'nome'}
+          placeholder={'Nome'}
           placeholderTextColor={'black'}
           textAlign={'center'}
           onChangeText={(value)=>{value == "" ? setHasValue(false) : setHasValue(true);setName(value);}}
           style={styles.input}
         />}
         <TextInput
-          placeholder={'e-mail'}
+          placeholder={'E-mail'}
           placeholderTextColor={'black'}
           textAlign={'center'}
           onChangeText={(value)=>{value == "" ? setHasValue1(false) : setHasValue1(true);setEmail(value);}}
@@ -177,7 +177,7 @@ const LoginScreen = ({navigation}) =>{
         />
         <TextInput
           secureTextEntry={true}
-          placeholder={'senha'}
+          placeholder={'Senha'}
           placeholderTextColor={'black'}
           textAlign={'center'}
           onChangeText={(value)=>{value == "" ? setHasValue2(false) : setHasValue2(true); setPassword(value);}}
@@ -186,7 +186,7 @@ const LoginScreen = ({navigation}) =>{
         {!isLogin &&
         <TextInput
           secureTextEntry={true}
-          placeholder={'confirmar senha'}
+          placeholder={'Confirmar senha'}
           placeholderTextColor={'black'}
           textAlign={'center'}
           onChangeText={(value)=>{value == "" ? setHasValue3(false) : setHasValue3(true); setConfirmPassword(value);}}
@@ -196,7 +196,7 @@ const LoginScreen = ({navigation}) =>{
         <View style={styles.divisor}/>
         <View style={styles.sectorButtons}>
           <Pressable style={styles.buttonFilled} onPress={onSubmitHandler}>
-            <Text style={styles.buttonText}>{isLogin ? hasValue1 || hasValue2 ? "Entrar" : 'Entrar Anonimamente' : 'Cadastrar'}</Text>
+            <Text style={styles.buttonText}>{isLogin ? hasValue1 || hasValue2 ? "Entrar" : 'Entrar anonimamente' : 'Criar conta'}</Text>
           </Pressable>
           <Pressable>
             <Text style={styles.buttonUnfilledText}>Esqueceu a senha?</Text>
@@ -208,28 +208,35 @@ const LoginScreen = ({navigation}) =>{
     </View>
   );
 };
+
+
+//Styles
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#ecf0f1',
+      backgroundColor: 'white',
     },
     divisor: {
-      borderBottomColor: 'black',
+      borderBottomColor: '#181D27',
       borderBottomWidth: 1,
       minWidth: 280,
       marginVertical: 20,
     },
     title: {
-      fontSize: 30,
-      fontWeight: 'bold',
+      fontFamily:'AmaticSC-Regular',
+      fontSize: 50,
       marginBottom: 30,
+      color: 'black',
     },
     input: {
+      fontFamily:'Roboto-Bold',
+      fontSize:17,
       minWidth: 280,
       padding: 6,
-      backgroundColor: 'grey',
+      backgroundColor: '#D2D7DF',
       borderRadius: 30,
       marginBottom: 15,
     },
@@ -237,17 +244,21 @@ const styles = StyleSheet.create({
       marginBottom: 50,
     },
     buttonText: {
-      color: 'white',
+      fontFamily:'Roboto-Bold',
+      fontSize:15,
+      color: 'black',
       textAlign: 'center',
     },
     buttonFilled: {
-      backgroundColor: 'black',
+      backgroundColor: '#FFBB00',
+      fontFamily:'Roboto-Light',
       padding: 15,
       marginBottom: 10,
       borderRadius: 30,
       minWidth: 280,
     },
     buttonUnfilledText: {
+      fontFamily:'Roboto-Light',
       color: 'black',
       textAlign: 'center',
     }
