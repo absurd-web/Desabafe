@@ -11,9 +11,9 @@ import {
     useColorScheme,
     View,
 } from 'react-native';
-const BotaoConfirmar = () =>{
+const BotaoConfirmar = (props) =>{
     return(
-        <Pressable style={styles.opcaoConfirmar}>
+        <Pressable onPress={()=>props.onPress()} style={styles.opcaoConfirmar}>
             <Text style={styles.confirmarText}>C</Text>
         </Pressable>
     );
@@ -24,7 +24,7 @@ const ChatOption = (props) =>{
             <Pressable onPress={()=>props.onPress()} style={props.isSelected ? styles.opcaoSelected : styles.opcao}>
                 <Text>{props.conteudo}</Text>
             </Pressable>
-            {props.isSelected && <BotaoConfirmar />}
+            {props.isSelected && <BotaoConfirmar onPress={()=>props.navigation.navigate('Splash',{goal:'Mensagem'})}/>}
         </View>
     );
 };
@@ -42,7 +42,7 @@ class ChatOptions extends Component{
         this.setState({opcoes: opcoes});
     }
     renderOpcao(i,conteudo){
-        return <ChatOption conteudo={conteudo} onPress={()=>this.aoPressionar(i)} isSelected={this.state.opcoes[i]}/>;
+        return <ChatOption conteudo={conteudo} navigation={this.props.navigation} onPress={()=>this.aoPressionar(i)} isSelected={this.state.opcoes[i]}/>;
     }
     render(){
         return(
@@ -50,19 +50,19 @@ class ChatOptions extends Component{
             {this.renderOpcao(0,"Depressão")}
             {this.renderOpcao(1,"Ansiedade")}
             {this.renderOpcao(2,"Fadiga")}
-            {this.renderOpcao(3,"Tristeza em geral")}
+            {this.renderOpcao(3,"Pular")}
             </>
         );
     }
 }
-const ChatScreen = () =>{
+const ChatScreen = ({navigation}) =>{
     return(
         <View style={styles.container}>
             <View style={styles.bubble}>
                 <Pressable><Text>Voltar</Text></Pressable>
                 <Text style={styles.bubbleText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porttitor tortor tempor erat maximus, in vehicula dui finibus. Maecenas ut euismod ligula, nec porta turpis. Vivamus ullamcorper blandit eros at finibus. Suspendisse porttitor nisi id lacus eleifend cursus.</Text>
             </View>
-            <ChatOptions />
+            <ChatOptions navigation={navigation}/>
         </View>
     );
 };
