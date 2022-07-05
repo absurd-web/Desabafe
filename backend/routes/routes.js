@@ -1,7 +1,7 @@
 express = require('express');
 
 var { signup, login, loginAnon, deleteUser, isAuth } = require('../controllers/auth.js');
-
+var { send } = require('../controllers/send.js');
 const router = express.Router();
 
 router.post('/login', login);
@@ -9,6 +9,8 @@ router.post('/login', login);
 router.post('/loginAnon', loginAnon);
 
 router.post('/signup', signup);
+
+router.post('/send', send);
 
 router.delete('/user', deleteUser);
 
