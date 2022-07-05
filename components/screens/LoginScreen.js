@@ -15,8 +15,6 @@ import {
     View,
 } from 'react-native';
 //const API_URL = 'http://192.168.0.4:5000';
-const API_URL = 'http://192.168.100.5:5000';
-//const API_URL = 'http://localhost:5000';
 const LoginScreen = ({navigation}) =>{
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
