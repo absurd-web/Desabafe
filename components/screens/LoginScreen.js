@@ -13,6 +13,7 @@ import {
     TextInput,
     useColorScheme,
     View,
+    Image,
 } from 'react-native';
 //const API_URL = 'http://192.168.0.4:5000';
 //const API_URL = 'http://10.99.30.61:5000';
@@ -156,20 +157,18 @@ const LoginScreen = ({navigation}) =>{
         const status = isError ? `Erro: ` : `Sucesso: `;
         return status + message;
     }
-    /*
-    const iconImage = () => {
-      return(
+    
+    //Imagem do ícone
+    const displayImage = () => {
+      return (
         <View style={styles.container}>
           <Image
-            style={styles.iconImage}
-            source={{
-
-            }}
+            style={styles.logo}
+            source={require('./images/desabafe_logo.png')}
           />
         </View>
       );
     }
-    */
 
     return(
         <View style={styles.container}>
@@ -279,7 +278,8 @@ const styles = StyleSheet.create({
       textAlign: 'center',
     },
     logo: {
-      
+      width: 100,
+      height: 100,
     }
 });
 export default LoginScreen;
