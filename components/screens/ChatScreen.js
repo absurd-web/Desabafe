@@ -10,6 +10,7 @@ import {
     TextInput,
     useColorScheme,
     View,
+    TouchableWithoutFeedbackBase,
 } from 'react-native';
 const BotaoConfirmar = () =>{
     return(
@@ -46,12 +47,11 @@ class ChatOptions extends Component{
     }
     render(){
         return(
-            <>
-            {this.renderOpcao(0,"Depressão")}
-            {this.renderOpcao(1,"Ansiedade")}
-            {this.renderOpcao(2,"Fadiga")}
-            {this.renderOpcao(3,"Tristeza em geral")}
-            </>
+                <>
+                {this.renderOpcao(0,<Text style={styles.opcaoText}>Depressão</Text>)}
+                {this.renderOpcao(1,<Text style={styles.opcaoText}>Ansiedade</Text>)}
+                {this.renderOpcao(2,<Text style={styles.opcaoText}>Fadiga</Text>)}
+                </>
         );
     }
 }
@@ -70,47 +70,56 @@ const styles = StyleSheet.create({
     container:{
         flex: 1,
         flexDirection: 'column',
+        backgroundColor: '#D2D7DF',
     },
+    /* Estilo da caixa de diálogo do app */
     bubble:{
-        backgroundColor: 'grey',
+        backgroundColor: '#8A897C',
         padding: 20,
         marginHorizontal: 20,
         marginVertical: 30,
         borderRadius: 20,
     },
+    /* Estilo do texto da caixa de diálogo */
     bubbleText:{
-        color: 'black',
-        fontWeight: 'bold',
+        fontFamily:'Roboto-Bold',
+        color: 'white',
+        fontSize: 17,
     },
     innerContainer:{
         flexDirection: 'row',
     },
+    /* Estilo das opções de diálogo */
     opcao:{
         flex: 6,
-        backgroundColor: 'darkgrey',
-        marginBottom: 5,
+        backgroundColor: '#181D27',
+        marginBottom: 9,
         marginLeft: 20,
-        marginRight: 68,
-        padding: 8,
-        borderRadius: 20,
+        marginRight: 20,
+        padding: 18,
+        borderRadius: 30,
     },
     opcaoSelected:{
         flex: 6,
-        backgroundColor: 'darkgrey',
-        marginBottom: 5,
+        backgroundColor: '#181D27',
+        marginBottom: 9,
         marginLeft: 20,
-        padding: 8,
-        borderRadius: 20,
+        padding: 18,
+        borderRadius: 30,
     },
+    /* Estilo do texto das opções de diálogo */
     opcaoText:{
+        fontFamily:'Roboto-Regular',
         color: 'white',
+        fontSize: 17,
     },
+    /* Botão de confirmar e opção selecionada */
     opcaoConfirmar:{
-        flex: 1,
+        flex: 1.4,
         backgroundColor: 'black',
         marginRight: 20,
-        borderRadius: 30,
-        marginBottom: 5,
+        borderRadius: 40,
+        marginBottom: 7,
         justifyContent: 'center',
     },
     confirmarText:{

@@ -7,7 +7,7 @@ import {
     View,
 } from 'react-native';
 //const API_URL = 'http://192.168.0.4:5000';
-const API_URL = 'http://localhost:5000';
+const API_URL = 'http://10.0.0.104:5000';
 const ConfigScreen = ({route, navigation}) =>{
   const {token} = route.params;
   const [isAnon, setIsAnon] = useState(token.email == '' ? true : false);

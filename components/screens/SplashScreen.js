@@ -2,7 +2,7 @@ import React,{Component} from 'react';
 import { StackActions, CommonActions } from '@react-navigation/native';
 import LoadingScreen from './LoadingScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const API_URL = 'http://192.168.0.4:5000';
+const API_URL = 'http://10.0.0.104:5000';
 class SplashScreen extends Component{
     constructor(props){
         super(props);

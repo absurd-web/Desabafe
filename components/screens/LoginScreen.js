@@ -16,7 +16,7 @@ import {
 } from 'react-native';
 //const API_URL = 'http://192.168.0.4:5000';
 //const API_URL = 'http://10.99.30.61:5000';
-const API_URL = 'http://localhost:5000';
+const API_URL = 'http://10.0.0.104:5000';
 const LoginScreen = ({navigation}) =>{
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
@@ -156,6 +156,20 @@ const LoginScreen = ({navigation}) =>{
         const status = isError ? `Erro: ` : `Sucesso: `;
         return status + message;
     }
+    /*
+    const iconImage = () => {
+      return(
+        <View style={styles.container}>
+          <Image
+            style={styles.iconImage}
+            source={{
+
+            }}
+          />
+        </View>
+      );
+    }
+    */
 
     return(
         <View style={styles.container}>
@@ -223,7 +237,9 @@ const styles = StyleSheet.create({
       borderBottomColor: '#181D27',
       borderBottomWidth: 1,
       minWidth: 280,
-      marginVertical: 20,
+      marginVertical: 25,
+      marginBottom: 35,
+      marginTop:10,
     },
     title: {
       fontFamily:'AmaticSC-Regular',
@@ -232,13 +248,13 @@ const styles = StyleSheet.create({
       color: 'black',
     },
     input: {
-      fontFamily:'Roboto-Bold',
+      fontFamily:'Roboto-Regular',
       fontSize:17,
       minWidth: 280,
-      padding: 6,
+      padding: 8,
       backgroundColor: '#D2D7DF',
       borderRadius: 30,
-      marginBottom: 15,
+      marginBottom: 8,
     },
     sectorButtons: {
       marginBottom: 50,
@@ -252,8 +268,8 @@ const styles = StyleSheet.create({
     buttonFilled: {
       backgroundColor: '#FFBB00',
       fontFamily:'Roboto-Light',
-      padding: 15,
-      marginBottom: 10,
+      padding: 20,
+      marginBottom: 20,
       borderRadius: 30,
       minWidth: 280,
     },
@@ -261,6 +277,9 @@ const styles = StyleSheet.create({
       fontFamily:'Roboto-Light',
       color: 'black',
       textAlign: 'center',
+    },
+    logo: {
+      
     }
 });
 export default LoginScreen;
