@@ -1,4 +1,5 @@
 import React,{ useState } from 'react';
+import Config from "react-native-config";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
     StyleSheet,
@@ -6,14 +7,13 @@ import {
     Text,
     View,
 } from 'react-native';
-const API_URL = 'http://192.168.100.5:5000';
 const ConfigScreen = ({route, navigation}) =>{
   const {token} = route.params;
   const [isAnon, setIsAnon] = useState(token.email == '' ? true : false);
   const [isError, setIsError] = useState(false);
   const [message, setMessage] = useState('');
   const switchToAnon = () =>{
-    fetch(`${API_URL}/loginAnon`, {
+    fetch(`${Config.API_URL}/loginAnon`, {
       method: 'POST',
       headers: {
           'Content-Type': 'application/json',

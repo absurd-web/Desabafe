@@ -1,6 +1,7 @@
 import React,{ useState } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import Config from "react-native-config";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
     SafeAreaView,
@@ -14,9 +15,6 @@ import {
     useColorScheme,
     View,
 } from 'react-native';
-//const API_URL = 'http://192.168.0.4:5000';
-const API_URL = 'http://192.168.100.5:5000';
-//const API_URL = 'http://localhost:5000';
 const LoginScreen = ({navigation}) =>{
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
@@ -37,7 +35,7 @@ const LoginScreen = ({navigation}) =>{
       setMessage('');
     }
     const onLoggedIn = token => {
-      fetch(`${API_URL}/private`, {
+      fetch(`${Config.API_URL}/private`, {
           method: 'GET',
           headers: {
               'Content-Type': 'application/json',
@@ -91,7 +89,7 @@ const LoginScreen = ({navigation}) =>{
               name,
               password,
           };
-          fetch(`${API_URL}/${isLogin ? 'login' : 'signup'}`, {
+          fetch(`${Config.API_URL}/${isLogin ? 'login' : 'signup'}`, {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
@@ -124,7 +122,7 @@ const LoginScreen = ({navigation}) =>{
               console.log(err);
           });
         }else{
-          fetch(`${API_URL}/loginAnon`, {
+          fetch(`${Config.API_URL}/loginAnon`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

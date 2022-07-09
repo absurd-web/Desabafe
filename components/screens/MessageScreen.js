@@ -1,4 +1,5 @@
 import React,{ useState, useEffect } from 'react';
+import Config from "react-native-config";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {
     StyleSheet,
@@ -9,7 +10,6 @@ import {
     Switch,
     View,
 } from 'react-native';
-const API_URL = 'http://192.168.100.5:5000';
 const MessageScreen = ({route, navigation}) => {
     const {token} = route.params;
     const id = token.id;
@@ -48,7 +48,7 @@ const MessageScreen = ({route, navigation}) => {
             id,
             isUrgente,
           };
-          fetch(`${API_URL}/${'send'}`, {
+          fetch(`${Config.API_URL}/send`, {
               method: 'POST',
               headers: {
                   'Content-Type': 'application/json',
