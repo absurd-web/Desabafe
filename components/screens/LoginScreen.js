@@ -1,6 +1,5 @@
 import React,{ useState } from 'react';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { CommonActions } from '@react-navigation/native';
 import Config from "react-native-config";
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {

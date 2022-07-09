@@ -40,7 +40,7 @@ const ConfigScreen = ({route, navigation}) =>{
     });
   }
   const deleteAccount = () =>{
-    fetch(`${API_URL}/user`, {
+    fetch(`${Config.API_URL}/user`, {
       method: 'DELETE',
       headers: {
           'Content-Type': 'application/json',
