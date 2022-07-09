@@ -2,11 +2,22 @@ import React,{Component} from 'react';
 import { StackActions, CommonActions } from '@react-navigation/native';
 import LoadingScreen from './LoadingScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
-const API_URL = 'http://10.0.0.104:5000';
+import { loadOptions } from '@babel/core';
+const API_URL = 'http://192.168.100.5:5000';
 class SplashScreen extends Component{
     constructor(props){
         super(props);
         this.authenticateSession();
+    }
+    resetToLogin(navigation){
+        navigation.dispatch(
+            CommonActions.reset({
+              index: 1,
+              routes: [
+                { name: 'Login' },
+              ],
+            })
+        );
     }
     authenticateSession(){
         const { navigation } = this.props;
@@ -26,17 +37,21 @@ class SplashScreen extends Component{
                     try {
                         const jsonRes = await res.json();
                         if (res.status === 200) {
-                            navigation.replace(goal,{token: jsonRes.token});
+                            if(goal != 'Login'){
+                                navigation.replace(goal,{token: jsonRes.token});
+                            }else{
+                                this.resetToLogin(navigation);
+                            }
                         }else if(jsonRes.message =='jwt expired'){
                             await AsyncStorage.removeItem('@token');
-                            navigation.replace('Login');
+                            this.resetToLogin(navigation);
                         }
                     } catch (err) {
                         console.log(err);
                     };
                 })
             }else{
-                navigation.replace('Login');
+                this.resetToLogin(navigation);
             }
             } catch(e) {
                 console.log(e);

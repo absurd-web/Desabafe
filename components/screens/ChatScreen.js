@@ -13,9 +13,9 @@ import {
     TouchableWithoutFeedbackBase,
     Image,
 } from 'react-native';
-const BotaoConfirmar = () =>{
+const BotaoConfirmar = (props) =>{
     return(
-        <Pressable style={styles.opcaoConfirmar}>
+        <Pressable onPress={()=>props.onPress()} style={styles.opcaoConfirmar}>
             <Text style={styles.confirmarText}>C</Text>
         </Pressable>
     );
@@ -24,9 +24,9 @@ const ChatOption = (props) =>{
     return(
         <View style={styles.innerContainer}>
             <Pressable onPress={()=>props.onPress()} style={props.isSelected ? styles.opcaoSelected : styles.opcao}>
-                <Text>{props.conteudo}</Text>
+                <Text style={styles.opcaoText}>{props.conteudo}</Text>
             </Pressable>
-            {props.isSelected && <BotaoConfirmar />}
+            {props.isSelected && <BotaoConfirmar onPress={()=>props.navigation.navigate('Splash',{goal:'Mensagem'})}/>}
         </View>
     );
 };
@@ -44,19 +44,20 @@ class ChatOptions extends Component{
         this.setState({opcoes: opcoes});
     }
     renderOpcao(i,conteudo){
-        return <ChatOption conteudo={conteudo} onPress={()=>this.aoPressionar(i)} isSelected={this.state.opcoes[i]}/>;
+        return <ChatOption conteudo={conteudo} navigation={this.props.navigation} onPress={()=>this.aoPressionar(i)} isSelected={this.state.opcoes[i]}/>;
     }
     render(){
         return(
-                <>
-                {this.renderOpcao(0,<Text style={styles.opcaoText}>Depressão</Text>)}
-                {this.renderOpcao(1,<Text style={styles.opcaoText}>Ansiedade</Text>)}
-                {this.renderOpcao(2,<Text style={styles.opcaoText}>Fadiga</Text>)}
-                </>
+            <>
+            {this.renderOpcao(0,"Depressão")}
+            {this.renderOpcao(1,"Ansiedade")}
+            {this.renderOpcao(2,"Fadiga")}
+            {this.renderOpcao(3,"Pular")}
+            </>
         );
     }
 }
-const ChatScreen = () =>{
+const ChatScreen = ({navigation}) =>{
     return(
         //Caixa de mensagem do app
         <View style={styles.container}>
@@ -70,7 +71,7 @@ const ChatScreen = () =>{
                 source={require('./images/pet.png')}
             />
             {/* Opções de diálogo */}
-            <ChatOptions />
+            <ChatOptions navigation={navigation}/>
         </View>
     );
 };

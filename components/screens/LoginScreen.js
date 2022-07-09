@@ -16,8 +16,6 @@ import {
     Image,
 } from 'react-native';
 //const API_URL = 'http://192.168.0.4:5000';
-//const API_URL = 'http://10.99.30.61:5000';
-const API_URL = 'http://10.0.0.104:5000';
 const LoginScreen = ({navigation}) =>{
     const [email, setEmail] = useState('');
     const [name, setName] = useState('');
@@ -49,7 +47,7 @@ const LoginScreen = ({navigation}) =>{
           try {
               const jsonRes = await res.json();
               if (res.status === 200) {
-                navigation.navigate('Chat');
+                navigation.replace('Chat');
               }
           } catch (err) {
               console.log(err);
