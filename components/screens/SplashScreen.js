@@ -1,9 +1,9 @@
 import React,{Component} from 'react';
+import Config from "react-native-config";
 import { StackActions, CommonActions } from '@react-navigation/native';
 import LoadingScreen from './LoadingScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { loadOptions } from '@babel/core';
-const API_URL = 'http://192.168.100.5:5000';
 class SplashScreen extends Component{
     constructor(props){
         super(props);
@@ -26,7 +26,7 @@ class SplashScreen extends Component{
             try {
             const value = await AsyncStorage.getItem('@token');
             if(value !== null) {
-                fetch(`${API_URL}/private`, {
+                fetch(`${Config.API_URL}/private`, {
                     method: 'GET',
                     headers: {
                         'Content-Type': 'application/json',
