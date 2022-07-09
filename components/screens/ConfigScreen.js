@@ -6,6 +6,7 @@ import {
     Pressable,
     Text,
     View,
+    Image,
 } from 'react-native';
 const ConfigScreen = ({route, navigation}) =>{
   const {token} = route.params;
@@ -80,21 +81,82 @@ const ConfigScreen = ({route, navigation}) =>{
   }
   return(
       <View style={styles.container}>
-          <Text style={styles.info}>{token.name}</Text>
-          <Text style={styles.info}>{token.email}</Text>
-          <View style={styles.divisor}></View>
-          <Pressable style={styles.button}>
-              <Text>Sobre</Text>
-          </Pressable>
-          <Pressable style={styles.button} onPress={switchToAnon}>
-              {!isAnon && <Text>Trocar para anônimo</Text>}
-          </Pressable>
-          <Pressable style={styles.button} onPress={deleteAccount}>
-              {!isAnon && <Text>Excluir Conta</Text>}
-          </Pressable>
+        {/* Deixar ícone de perfil, nome e email lado a lado */}
+          <View style={styles.row}>
+            <View>
+              <Image
+                style={styles.profilePic}
+                source={require('./images/icons/profile_icon.png')}
+              />
+            </View>
+
+            <View>
+              <Text style={styles.info}>{token.name}</Text>
+            </View>
+
+            <View>
+              <Text style={styles.info}>{token.email}</Text>
+            </View>
+
+          </View>
+
+            <View style={styles.divisor}></View>
+
+          {/* Sobre */}
+          <View style={styles.row}>
+            <View>
+              <Image
+                style={styles.icons}
+                source={require('./images/icons/about.png')}
+              />
+            </View>
+
+            <Pressable style={styles.button}>
+                <Text style={styles.buttonText}>Sobre</Text>
+            </Pressable>
+          </View>
+
+          {/* Anônimo */}
+          <View style={styles.row}>
+            <View>
+            {!isAnon && <Image
+                style={styles.icons}
+                source={require('./images/icons/anon.png')}
+              />}
+            </View>
+            <Pressable style={styles.button} onPress={switchToAnon}>
+                {!isAnon && <Text style={styles.buttonText}>Trocar para anônimo</Text>}
+            </Pressable>
+          </View>
+
+          {/* Excluir conta */}
+          <View style={styles.row}>
+            <View>
+              {!isAnon && <Image
+                style={styles.icons}
+                source={require('./images/icons/delete_account.png')}
+              />}
+            </View>
+
+            <Pressable style={styles.button} onPress={deleteAccount}>
+                {!isAnon && <Text style={styles.buttonText}>Excluir Conta</Text>}
+            </Pressable>
+          </View>
+
+          {/* Encerrar sessão */}
+          <View style={styles.row}>
+            <View>
+              <Image
+                style={styles.icons}
+                source={require('./images/icons/logoff.png')}
+              />
+            </View>
+
           <Pressable style={styles.button} onPress={endSession}>
-              <Text>Encerrar Sessão</Text>
+              <Text style={styles.buttonText}>Encerrar Sessão</Text>
           </Pressable>
+          </View>
+
           <Text style={[styles.message, {color: isError ? 'red' : 'green'}]}>{message ? getMessage() : null}</Text>
       </View>
   );
@@ -102,22 +164,45 @@ const ConfigScreen = ({route, navigation}) =>{
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      alignItems: 'center',
-      backgroundColor: '#ecf0f1',
+      alignItems: 'flex-start',
+      backgroundColor: 'white',
     },
     divisor: {
       borderBottomColor: 'black',
       borderBottomWidth: 1,
-      minWidth: 280,
-      marginVertical: 20,
+      minWidth: '100%',
+      marginVertical: '9%',
     },
     info: {
+      fontFamily: 'Roboto-Bold',
       fontSize: 20,
-      fontWeight: 'bold',
       marginVertical: 30,
+      color: 'black',
     },
     button: {
-      marginBottom: 10,
+      marginBottom: 35,
+      marginLeft: 20,
+    },
+    buttonText: {
+      fontFamily: 'Roboto-Bold',
+      fontSize: 20,
+      color: 'black',
+    },
+    profilePic: {
+      width: 100,
+      height: 100,
+      marginTop: 20,
+      marginLeft: 30,
+    },
+    row: {
+      flexDirection: 'row',
+      flexWrap: 'wrap',
+      marginTop: '4%',
+    },
+    icons: {
+      width: 30,
+      height: 30,
+      marginLeft: 30,
     },
 });
 export default ConfigScreen;

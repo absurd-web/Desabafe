@@ -12,12 +12,18 @@ import {
     View,
     TouchableWithoutFeedbackBase,
     Image,
+    TouchableOpacity,
 } from 'react-native';
 const BotaoConfirmar = (props) =>{
     return(
-        <Pressable onPress={()=>props.onPress()} style={styles.opcaoConfirmar}>
-            <Text style={styles.confirmarText}>C</Text>
-        </Pressable>
+        <TouchableOpacity onPress={()=>props.onPress()}>
+            <View>
+                <Image
+                    style={styles.opcaoConfirmar}
+                    source={require('./images/icons/play.png')}
+                />
+            </View>
+        </TouchableOpacity>
     );
 }
 const ChatOption = (props) =>{
@@ -30,6 +36,7 @@ const ChatOption = (props) =>{
         </View>
     );
 };
+
 class ChatOptions extends Component{
     constructor(props){
         super(props);
@@ -87,8 +94,8 @@ const styles = StyleSheet.create({
         backgroundColor: '#8A897C',
         padding: 20,
         marginHorizontal: 20,
-        marginTop: 30,
-        marginBottom: 10,
+        marginTop: 15,
+        marginBottom: 8,
         borderRadius: 20,
     },
     /* Estilo do texto da caixa de diálogo */
@@ -107,7 +114,7 @@ const styles = StyleSheet.create({
         marginBottom: 9,
         marginLeft: 40,
         marginRight: 40,
-        padding: 18,
+        padding: 15,
         borderRadius: 30,
     },
     opcaoSelected:{
@@ -115,32 +122,31 @@ const styles = StyleSheet.create({
         backgroundColor: '#181D27',
         marginBottom: 9,
         marginLeft: 40,
-        padding: 18,
+        padding: 15,
         borderRadius: 30,
     },
     /* Estilo do texto das opções de diálogo */
     opcaoText:{
+        paddingLeft: 15,
         fontFamily:'Roboto-Regular',
         color: 'white',
         fontSize: 17,
     },
     /* Botão de confirmar e opção selecionada */
     opcaoConfirmar:{
-        flex: 1.15,
-        backgroundColor: '#181D27',
-        marginRight: 40,
-        borderRadius: 40,
-        marginBottom: 7,
+        width: 54,
+        height: 54,
         justifyContent: 'center',
-    },
-    confirmarText:{
-        color: 'white',
-        textAlign: 'center',
+        marginRight: 40,
+        marginLeft: 10,
     },
     mascote:{
         width: 210,
         height: 200,
         marginBottom: 10,
+    },
+    scrollView:{
+        marginHorizontal: 40,
     },
 });
 export default ChatScreen;

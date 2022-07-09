@@ -9,6 +9,7 @@ import {
     Modal,
     Switch,
     View,
+    Image,
 } from 'react-native';
 const MessageScreen = ({route, navigation}) => {
     const {token} = route.params;
@@ -34,7 +35,7 @@ const MessageScreen = ({route, navigation}) => {
             Quando terminar, você pode enviar, mas também pode mudar de idéia.`;
         }
     }
-    //Pega o rascunho da memoria uma vez logo apos renderização
+    //Pega o rascunho da memoria uma vez logo após renderização
     useEffect(() => {
       getRascunho().then(data => setRascunho(data));
     }, [])
@@ -91,10 +92,17 @@ const MessageScreen = ({route, navigation}) => {
             >
                 <View style={styles.centeredView}>
                 <View style={styles.modalView}>
+                  {/* A imagem de salvar fica nas duas telas, de enviar e salvar, resolver isso! */}
+                  <View>
+                    <Image
+                      style={styles.saveIcon}
+                      source={require('./images/icons/save_icon.png')}
+                    />
+                  </View>
                     <Text style={styles.modalText}>{isEnviar ? `Deseja finalizar e enviar
 o relato?` : `Deseja salvar seu
 texto para enviar depois?`}</Text>
-                    {isEnviar && <Text>Urgente?</Text>}
+                    {isEnviar && <Text style={styles.urgente}>Urgente?</Text>}
                     {isEnviar && <Switch onValueChange={()=>setIsUrgente(!isUrgente)} value={isUrgente}/>}
                     <Pressable
                     style={[styles.button, styles.buttonClose]}
@@ -105,7 +113,7 @@ texto para enviar depois?`}</Text>
                     <Pressable
                     onPress={() => setModalVisible(!modalVisible)}
                     >
-                    <Text>{isEnviar ? 'Ainda não' : 'Não salvar'}</Text>
+                    <Text style={styles.naoSalvar}>{isEnviar ? 'Ainda não' : 'Não salvar'}</Text>
                     </Pressable>
                 </View>
                 </View>
@@ -114,10 +122,10 @@ texto para enviar depois?`}</Text>
           placeholderTextColor={'black'}/>
             <Text style={[styles.message, {color: isError ? 'red' : 'green'}]}>{message ? getMessage() : null}</Text>
             <Pressable style={styles.button} onPress={()=>{setModalVisible(!modalVisible);setIsEnviar(true);}}>
-                <Text>Enviar</Text>
+                <Text style={styles.textButton}>Enviar</Text>
             </Pressable>
-            <Pressable style={styles.button} onPress={()=>{setModalVisible(!modalVisible);setIsEnviar(false);}}>
-                <Text>Não Enviar</Text>
+            <Pressable style={styles.button2} onPress={()=>{setModalVisible(!modalVisible);setIsEnviar(false);}}>
+                <Text style={styles.textButton}>Não Enviar</Text>
             </Pressable>
         </View>
     );
@@ -146,47 +154,6 @@ const styles = StyleSheet.create({
     button: {
       marginBottom: 10,
     },
-    centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center"
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center"
-  },
   centeredView: {
     flex: 1,
     justifyContent: "center",
@@ -195,7 +162,7 @@ const styles = StyleSheet.create({
   },
   modalView: {
     margin: 20,
-    backgroundColor: "white",
+    backgroundColor: "#FFBB00",
     borderRadius: 20,
     padding: 35,
     alignItems: "center",
@@ -209,24 +176,63 @@ const styles = StyleSheet.create({
     elevation: 5
   },
   button: {
-    borderRadius: 20,
+    backgroundColor: '#FFBB00',
+    borderRadius: 30,
     padding: 10,
-    elevation: 2
+    minWidth: '70%',
+    minHeight: 55,
+    marginBottom: '2%',
+  },
+  button2: {
+    backgroundColor: 'white',
+    borderRadius: 30,
+    padding: 10,
+    minWidth: '70%',
+    minHeight: 55,
+    marginBottom: '2%',
+  },
+  textButton: {
+    color: 'black',
+    fontFamily: 'Roboto-Bold',
+    fontSize: 15,
+    textAlign: 'center',
+    marginTop: 5,
   },
   buttonOpen: {
-    backgroundColor: "#F194FF",
+    backgroundColor: "black",
   },
   buttonClose: {
-    backgroundColor: "#2196F3",
+    borderRadius: 10,
+    minHeight: '7%',
+    backgroundColor: "black",
   },
   textStyle: {
     color: "white",
-    fontWeight: "bold",
-    textAlign: "center"
+    fontFamily: 'Roboto-Bold',
+    textAlign: "center",
+    marginTop: 5,
   },
   modalText: {
+    color: 'black',
+    fontFamily: 'Roboto-Light',
     marginBottom: 15,
     textAlign: "center"
-  }
+  },
+  naoSalvar: {
+    color: 'black',
+    fontFamily: 'Roboto-Bold',
+    fontSize: 15,
+  },
+  urgente: {
+    color: 'black',
+    fontFamily: 'Roboto-Light',
+    marginBottom: 5,
+    textAlign: "center"
+  },
+  saveIcon: {
+    width: 50,
+    height: 50,
+  },
 });
+
 export default MessageScreen;
