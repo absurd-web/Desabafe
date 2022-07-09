@@ -14,6 +14,7 @@ import {
     TextInput,
     useColorScheme,
     View,
+    Image,
 } from 'react-native';
 const LoginScreen = ({navigation}) =>{
     const [email, setEmail] = useState('');
@@ -154,13 +155,19 @@ const LoginScreen = ({navigation}) =>{
         const status = isError ? `Erro: ` : `Sucesso: `;
         return status + message;
     }
+    
 
     return(
         <View style={styles.container}>
+        {/* Imagem da logo desabafe */}
+        <Image
+          style={styles.logo}
+          source={require('./images/desabafe_logo.png')}
+        />
         <Text style={styles.title}>Desabafe</Text>
         {!isLogin &&
         <TextInput
-          placeholder={'nome'}
+          placeholder={'Nome'}
           placeholderTextColor={'black'}
           textAlign={'center'}
           onChangeText={(value)=>{value == "" ? setHasValue(false) : setHasValue(true);setName(value);}}
@@ -184,7 +191,7 @@ const LoginScreen = ({navigation}) =>{
         {!isLogin &&
         <TextInput
           secureTextEntry={true}
-          placeholder={'confirmar senha'}
+          placeholder={'Confirmar senha'}
           placeholderTextColor={'black'}
           textAlign={'center'}
           onChangeText={(value)=>{value == "" ? setHasValue3(false) : setHasValue3(true); setConfirmPassword(value);}}
@@ -194,7 +201,7 @@ const LoginScreen = ({navigation}) =>{
         <View style={styles.divisor}/>
         <View style={styles.sectorButtons}>
           <Pressable style={styles.buttonFilled} onPress={onSubmitHandler}>
-            <Text style={styles.buttonText}>{isLogin ? hasValue1 || hasValue2 ? "Entrar" : 'Entrar Anonimamente' : 'Cadastrar'}</Text>
+            <Text style={styles.buttonText}>{isLogin ? hasValue1 || hasValue2 ? "Entrar" : 'Entrar anonimamente' : 'Criar conta'}</Text>
           </Pressable>
           <Pressable>
             <Text style={styles.buttonUnfilledText}>Esqueceu a senha?</Text>
@@ -206,48 +213,67 @@ const LoginScreen = ({navigation}) =>{
     </View>
   );
 };
+
+
+//Styles
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
       justifyContent: 'center',
-      backgroundColor: '#ecf0f1',
+      backgroundColor: 'white',
     },
     divisor: {
-      borderBottomColor: 'black',
+      borderBottomColor: '#181D27',
       borderBottomWidth: 1,
-      minWidth: 280,
-      marginVertical: 20,
+      minWidth: 320,
+      marginVertical: 25,
+      marginBottom: 35,
+      marginTop:15,
     },
     title: {
-      fontSize: 30,
-      fontWeight: 'bold',
+      fontFamily:'AmaticSC-Regular',
+      fontSize: 45,
       marginBottom: 30,
+      color: 'black',
     },
     input: {
+      fontFamily:'Roboto-Regular',
+      fontSize:17,
       minWidth: 280,
-      padding: 6,
-      backgroundColor: 'grey',
+      padding: 8,
+      backgroundColor: '#D2D7DF',
       borderRadius: 30,
-      marginBottom: 15,
+      marginBottom: 8,
     },
     sectorButtons: {
       marginBottom: 50,
     },
     buttonText: {
-      color: 'white',
+      fontFamily:'Roboto-Bold',
+      fontSize:15,
+      color: 'black',
       textAlign: 'center',
     },
     buttonFilled: {
-      backgroundColor: 'black',
-      padding: 15,
-      marginBottom: 10,
+      backgroundColor: '#FFBB00',
+      fontFamily:'Roboto-Light',
+      padding: 20,
+      marginBottom: 20,
       borderRadius: 30,
       minWidth: 280,
     },
     buttonUnfilledText: {
+      fontFamily:'Roboto-Light',
       color: 'black',
       textAlign: 'center',
+    },
+    logo: {
+      width: 144,
+      height: 144,
+      marginBottom: 10,
     }
 });
+
 export default LoginScreen;
