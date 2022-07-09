@@ -158,20 +158,14 @@ const LoginScreen = ({navigation}) =>{
         return status + message;
     }
     
-    //Imagem do ícone
-    const displayImage = () => {
-      return (
-        <View style={styles.container}>
-          <Image
-            style={styles.logo}
-            source={require('./images/desabafe_logo.png')}
-          />
-        </View>
-      );
-    }
 
     return(
         <View style={styles.container}>
+        {/* Imagem da logo desabafe */}
+        <Image
+          style={styles.logo}
+          source={require('./images/desabafe_logo.png')}
+        />
         <Text style={styles.title}>Desabafe</Text>
         {!isLogin &&
         <TextInput
@@ -182,7 +176,7 @@ const LoginScreen = ({navigation}) =>{
           style={styles.input}
         />}
         <TextInput
-          placeholder={'E-mail'}
+          placeholder={'e-mail'}
           placeholderTextColor={'black'}
           textAlign={'center'}
           onChangeText={(value)=>{value == "" ? setHasValue1(false) : setHasValue1(true);setEmail(value);}}
@@ -190,7 +184,7 @@ const LoginScreen = ({navigation}) =>{
         />
         <TextInput
           secureTextEntry={true}
-          placeholder={'Senha'}
+          placeholder={'senha'}
           placeholderTextColor={'black'}
           textAlign={'center'}
           onChangeText={(value)=>{value == "" ? setHasValue2(false) : setHasValue2(true); setPassword(value);}}
@@ -235,14 +229,14 @@ const styles = StyleSheet.create({
     divisor: {
       borderBottomColor: '#181D27',
       borderBottomWidth: 1,
-      minWidth: 280,
+      minWidth: 320,
       marginVertical: 25,
       marginBottom: 35,
-      marginTop:10,
+      marginTop:15,
     },
     title: {
       fontFamily:'AmaticSC-Regular',
-      fontSize: 50,
+      fontSize: 45,
       marginBottom: 30,
       color: 'black',
     },
@@ -278,8 +272,9 @@ const styles = StyleSheet.create({
       textAlign: 'center',
     },
     logo: {
-      width: 100,
-      height: 100,
+      width: 144,
+      height: 144,
+      marginBottom: 10,
     }
 });
 

@@ -11,6 +11,7 @@ import {
     useColorScheme,
     View,
     TouchableWithoutFeedbackBase,
+    Image,
 } from 'react-native';
 const BotaoConfirmar = () =>{
     return(
@@ -57,11 +58,18 @@ class ChatOptions extends Component{
 }
 const ChatScreen = () =>{
     return(
+        //Caixa de mensagem do app
         <View style={styles.container}>
             <View style={styles.bubble}>
-                <Pressable><Text>Voltar</Text></Pressable>
+                {/*<Pressable><Text>Voltar</Text></Pressable>*/}
                 <Text style={styles.bubbleText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porttitor tortor tempor erat maximus, in vehicula dui finibus. Maecenas ut euismod ligula, nec porta turpis. Vivamus ullamcorper blandit eros at finibus. Suspendisse porttitor nisi id lacus eleifend cursus.</Text>
             </View>
+            {/* Imagem do mascote  */}
+            <Image
+                style={styles.mascote}
+                source={require('./images/pet.png')}
+            />
+            {/* Opções de diálogo */}
             <ChatOptions />
         </View>
     );
@@ -71,13 +79,15 @@ const styles = StyleSheet.create({
         flex: 1,
         flexDirection: 'column',
         backgroundColor: '#D2D7DF',
+        alignItems: 'center',
     },
     /* Estilo da caixa de diálogo do app */
     bubble:{
         backgroundColor: '#8A897C',
         padding: 20,
         marginHorizontal: 20,
-        marginVertical: 30,
+        marginTop: 30,
+        marginBottom: 10,
         borderRadius: 20,
     },
     /* Estilo do texto da caixa de diálogo */
@@ -94,16 +104,16 @@ const styles = StyleSheet.create({
         flex: 6,
         backgroundColor: '#181D27',
         marginBottom: 9,
-        marginLeft: 20,
-        marginRight: 20,
+        marginLeft: 40,
+        marginRight: 40,
         padding: 18,
         borderRadius: 30,
     },
     opcaoSelected:{
-        flex: 6,
+        flex: 4,
         backgroundColor: '#181D27',
         marginBottom: 9,
-        marginLeft: 20,
+        marginLeft: 40,
         padding: 18,
         borderRadius: 30,
     },
@@ -115,9 +125,9 @@ const styles = StyleSheet.create({
     },
     /* Botão de confirmar e opção selecionada */
     opcaoConfirmar:{
-        flex: 1.4,
-        backgroundColor: 'black',
-        marginRight: 20,
+        flex: 1.15,
+        backgroundColor: '#181D27',
+        marginRight: 40,
         borderRadius: 40,
         marginBottom: 7,
         justifyContent: 'center',
@@ -125,6 +135,11 @@ const styles = StyleSheet.create({
     confirmarText:{
         color: 'white',
         textAlign: 'center',
+    },
+    mascote:{
+        width: 210,
+        height: 200,
+        marginBottom: 10,
     },
 });
 export default ChatScreen;
