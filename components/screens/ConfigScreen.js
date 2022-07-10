@@ -82,7 +82,6 @@ const ConfigScreen = ({route, navigation}) =>{
   return(
       <View style={styles.container}>
         {/* Deixar ícone de perfil, nome e email lado a lado */}
-          <View style={styles.row}>
             <View>
               <Image
                 style={styles.profilePic}
@@ -91,13 +90,12 @@ const ConfigScreen = ({route, navigation}) =>{
             </View>
 
             <View>
-              <Text style={styles.info}>{token.name}</Text>
+              <Text style={styles.info1}>{token.name}</Text>
             </View>
 
             <View>
-              <Text style={styles.info}>{''+token.email}</Text>
+              <Text style={styles.info2}>{token.email}</Text>
             </View>
-          </View>
 
             <View style={styles.divisor}></View>
 
@@ -110,7 +108,7 @@ const ConfigScreen = ({route, navigation}) =>{
               />
             </View>
 
-            <Pressable style={styles.button}>
+            <Pressable style={styles.button} onPress={()=>navigation.navigate('Splash',{goal:'About'})}>
                 <Text style={styles.buttonText}>Sobre</Text>
             </Pressable>
           </View>
@@ -172,11 +170,20 @@ const styles = StyleSheet.create({
       minWidth: '100%',
       marginVertical: '9%',
     },
-    info: {
+    info1: {
       fontFamily: 'Roboto-Bold',
       fontSize: 20,
-      marginVertical: 30,
+      marginBottom: 15,
+      marginTop: '11%',
       color: 'black',
+      left: '37%',
+    },
+    info2: {
+      fontFamily: 'Roboto-Bold',
+      fontSize: 20,
+      marginBottom: '4%',
+      color: 'black',
+      left: '37%',
     },
     button: {
       marginBottom: 35,
@@ -190,8 +197,9 @@ const styles = StyleSheet.create({
     profilePic: {
       width: 100,
       height: 100,
-      marginTop: 20,
+      marginTop: 30,
       marginLeft: 30,
+      position: 'absolute',
     },
     row: {
       flexDirection: 'row',

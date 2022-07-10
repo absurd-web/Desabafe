@@ -10,6 +10,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import ConfigButton from './components/ConfigButton';
 import ReturnButton from './components/ReturnButton';
+import AboutScreen from './components/screens/AboutScreen';
 
 const Stack = createNativeStackNavigator();
 const App: () => Node = () => {
@@ -31,6 +32,11 @@ const App: () => Node = () => {
           name="Config" 
           component={ConfigScreen} 
           options={{headerTitle: 'Configurações', headerStyle:{ backgroundColor: '#FFBB00'}, headerTitleStyle:{ fontFamily:'Roboto-Bold', fontSize: 23, }}}/>
+        {/* TELA DE SOBRE, CONSERTAR!
+        <Stack.Screen
+          name="About"
+          component={AboutScreen}
+  options={({navigation}) =>({headerTitle: 'Sobre', headerStyle:{ backgroundColor: '#FFBB00'}, headerTitleStyle:{ fontFamily: 'Roboto-Bold', fontSize: 23, }})}/> */}
       </Stack.Navigator>
     </NavigationContainer>
   );  
