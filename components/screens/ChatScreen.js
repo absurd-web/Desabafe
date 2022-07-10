@@ -64,14 +64,17 @@ class ChatOptions extends Component{
         );
     }
 }
+
 const ChatScreen = ({navigation}) =>{
     return(
         //Caixa de mensagem do app
         <View style={styles.container}>
             <View style={styles.bubble}>
-                {/*<Pressable><Text>Voltar</Text></Pressable>*/}
-                <Text style={styles.bubbleText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porttitor tortor tempor erat maximus, in vehicula dui finibus. Maecenas ut euismod ligula, nec porta turpis. Vivamus ullamcorper blandit eros at finibus. Suspendisse porttitor nisi id lacus eleifend cursus.</Text>
+                {/* Triângulo do balão de fala */}
+                <View style={styles.triangle}></View>
+                <Text style={styles.bubbleText}>Lorem ipsum dolor sit amet</Text>
             </View>
+
             {/* Imagem do mascote  */}
             <Image
                 style={styles.mascote}
@@ -82,6 +85,7 @@ const ChatScreen = ({navigation}) =>{
         </View>
     );
 };
+
 const styles = StyleSheet.create({
     container:{
         flex: 1,
@@ -95,8 +99,12 @@ const styles = StyleSheet.create({
         padding: 20,
         marginHorizontal: 20,
         marginTop: 15,
-        marginBottom: 8,
+        marginBottom: 0,
         borderRadius: 20,
+        minWidth: '80%',
+        maxWidth: '80%',
+        minHeight: '27%',
+        maxHeight: '27%',
     },
     /* Estilo do texto da caixa de diálogo */
     bubbleText:{
@@ -112,8 +120,8 @@ const styles = StyleSheet.create({
         flex: 6,
         backgroundColor: '#181D27',
         marginBottom: 9,
-        marginLeft: 40,
-        marginRight: 40,
+        minWidth: '80%',
+        maxWidth: '80%',
         padding: 15,
         borderRadius: 30,
     },
@@ -121,7 +129,8 @@ const styles = StyleSheet.create({
         flex: 4,
         backgroundColor: '#181D27',
         marginBottom: 9,
-        marginLeft: 40,
+        minWidth: '63.67%',
+        maxWidth: '63.67%',
         padding: 15,
         borderRadius: 30,
     },
@@ -132,12 +141,12 @@ const styles = StyleSheet.create({
         color: 'white',
         fontSize: 17,
     },
-    /* Botão de confirmar e opção selecionada */
+    /* Botão de confirmar */
     opcaoConfirmar:{
         width: 54,
         height: 54,
         justifyContent: 'center',
-        marginRight: 40,
+        marginRight: 0,
         marginLeft: 10,
     },
     mascote:{
@@ -148,5 +157,23 @@ const styles = StyleSheet.create({
     scrollView:{
         marginHorizontal: 40,
     },
+    /* Triângulo da caixa de texto */
+    triangle: {
+        width: 0,
+        height: 0,
+        backgroundColor: 'transparent',
+        borderStyle: 'solid',
+        borderTopWidth: 0,
+        borderRightWidth: 25,
+        borderBottomWidth: 60,
+        borderLeftWidth: 0,
+        borderTopColor: 'transparent',
+        borderRightColor: '#8A897C',
+        borderBottomColor: 'transparent',
+        borderLeftColor: 'transparent',
+        position: 'absolute',
+        top: 170,
+        left: 44,
+      },   
 });
 export default ChatScreen;

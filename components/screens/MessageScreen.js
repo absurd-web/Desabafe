@@ -6,16 +6,17 @@ import {
     Pressable,
     Text,
     TextInput,
-    Modal,
     Switch,
     View,
     Image,
+    Modal,
 } from 'react-native';
+
 const MessageScreen = ({route, navigation}) => {
     const {token} = route.params;
     const id = token.id;
-    const [rascunho,setRascunho] = useState(`Nesse espaço você irá escrever o seu desabafo! 
-    Quando terminar, você pode enviar, mas também pode mudar de idéia.`);
+    const [rascunho,setRascunho] = useState(`Nesse espaço você irá escrever o seu desabafo!
+Quando terminar, você pode enviar, mas também pode mudar de idéia.`);
     const [conteudo, setConteudo] = useState('');
     const [modalVisible, setModalVisible] = useState(false);
     const [isEnviar, setIsEnviar] = useState(true);
@@ -31,8 +32,8 @@ const MessageScreen = ({route, navigation}) => {
         if(value != null){
             return value;
         }else{
-            return `Nesse espaço você irá escrever o seu desabafo! 
-            Quando terminar, você pode enviar, mas também pode mudar de idéia.`;
+            return `Nesse espaço você irá escrever o seu desabafo!
+Quando terminar, você pode enviar, mas também pode mudar de idéia.`;
         }
     }
     //Pega o rascunho da memoria uma vez logo após renderização
@@ -83,7 +84,7 @@ const MessageScreen = ({route, navigation}) => {
     return(
         <View style={styles.container}>
             <Modal
-                animationType="slide"
+                animationType="fade"
                 transparent={true}
                 visible={modalVisible}
                 onRequestClose={() => {
@@ -93,12 +94,18 @@ const MessageScreen = ({route, navigation}) => {
                 <View style={styles.centeredView}>
                 <View style={styles.modalView}>
                   {/* A imagem de salvar fica nas duas telas, de enviar e salvar, resolver isso! */}
-                  <View>
+                  {!isEnviar && <View>
                     <Image
                       style={styles.saveIcon}
                       source={require('./images/icons/save_icon.png')}
                     />
-                  </View>
+                  </View>}
+                  {isEnviar && <View>
+                    <Image
+                      style={styles.sendIcon}
+                      source={require('./images/icons/message_icon.png')}
+                    />
+                  </View>}
                     <Text style={styles.modalText}>{isEnviar ? `Deseja finalizar e enviar
 o relato?` : `Deseja salvar seu
 texto para enviar depois?`}</Text>
@@ -134,7 +141,7 @@ const styles = StyleSheet.create({
     container: {
       flex: 1,
       alignItems: 'center',
-      backgroundColor: '#ecf0f1',
+      backgroundColor: 'white',
     },
     divisor: {
       borderBottomColor: 'black',
@@ -144,7 +151,19 @@ const styles = StyleSheet.create({
     },
     input: {
       borderWidth: 1,
-      borderColor: 'black',
+      borderColor: '#D2D7DF',
+      marginTop: '9%',
+      marginHorizontal: '9%',
+      marginBottom: '4%',
+      borderRadius: 20,
+      backgroundColor: '#D2D7DF',
+      fontFamily: 'Roboto-Regular',
+      fontSize: 16,
+      minHeight: '67%',
+      minWidth: '82.2%',
+      textAlignVertical: 'top',
+      paddingHorizontal: 30,
+      paddingTop: 40,
     },
     info: {
       fontSize: 20,
@@ -158,7 +177,7 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-    marginTop: 22
+    backgroundColor: 'rgba(0, 0, 0, 0.5)'
   },
   modalView: {
     margin: 20,
@@ -169,7 +188,7 @@ const styles = StyleSheet.create({
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
-      height: 2
+      height: 2,
     },
     shadowOpacity: 0.25,
     shadowRadius: 4,
@@ -232,6 +251,11 @@ const styles = StyleSheet.create({
   saveIcon: {
     width: 50,
     height: 50,
+  },
+  sendIcon: {
+    width: 84,
+    height: 50,
+    marginBottom: 10,
   },
 });
 

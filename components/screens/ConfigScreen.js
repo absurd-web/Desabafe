@@ -95,9 +95,8 @@ const ConfigScreen = ({route, navigation}) =>{
             </View>
 
             <View>
-              <Text style={styles.info}>{token.email}</Text>
+              <Text style={styles.info}>{''+token.email}</Text>
             </View>
-
           </View>
 
             <View style={styles.divisor}></View>
@@ -117,31 +116,31 @@ const ConfigScreen = ({route, navigation}) =>{
           </View>
 
           {/* Anônimo */}
-          <View style={styles.row}>
+          {!isAnon && <View style={styles.row}>
             <View>
-            {!isAnon && <Image
+            <Image
                 style={styles.icons}
                 source={require('./images/icons/anon.png')}
-              />}
+              />
             </View>
             <Pressable style={styles.button} onPress={switchToAnon}>
                 {!isAnon && <Text style={styles.buttonText}>Trocar para anônimo</Text>}
             </Pressable>
-          </View>
+          </View>}
 
           {/* Excluir conta */}
-          <View style={styles.row}>
+          {!isAnon && <View style={styles.row}>
             <View>
-              {!isAnon && <Image
+              <Image
                 style={styles.icons}
                 source={require('./images/icons/delete_account.png')}
-              />}
+              />
             </View>
 
             <Pressable style={styles.button} onPress={deleteAccount}>
                 {!isAnon && <Text style={styles.buttonText}>Excluir Conta</Text>}
             </Pressable>
-          </View>
+          </View>}
 
           {/* Encerrar sessão */}
           <View style={styles.row}>
