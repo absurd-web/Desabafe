@@ -108,7 +108,7 @@ const ConfigScreen = ({route, navigation}) =>{
               />
             </View>
 
-            <Pressable style={styles.button} onPress={()=>navigation.navigate('Splash',{goal:'About'})}>
+            <Pressable style={styles.button} onPress={()=>navigation.navigate('About')}>
                 <Text style={styles.buttonText}>Sobre</Text>
             </Pressable>
           </View>
