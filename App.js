@@ -18,29 +18,31 @@ const Stack = createNativeStackNavigator();
 const App: () => Node = () => {
   return (
     <NavigationContainer>
-      <Stack.Navigator initialRouteName="Splash">
+      <Stack.Navigator screenOptions={{
+        headerStyle:{ backgroundColor: '#FFBB00',},
+        headerTitleStyle:{ fontFamily:'Roboto-Bold', fontSize: 23, },
+      }} initialRouteName="Splash">
         <Stack.Screen name="Splash" component={SplashScreen} initialParams={{ goal: 'Chat' }} options={{headerShown: false}}/>
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
         <Stack.Screen 
           name="Chat" 
           component={ChatScreen} 
-          options={({navigation}) =>({headerTitle: '', headerStyle:{ backgroundColor: '#FFBB00',},headerRight: ()=> <ConfigButton onPress={()=>navigation.navigate('Splash',{goal: 'Config'})} />,
-            headerLeft: ()=> <ReturnButton onPress={()=>navigation.navigate('Splash',{goal: 'Login'})} />,})}/>
+          options={({navigation}) =>({headerTitle: '',headerRight: ()=> <ConfigButton onPress={()=>navigation.navigate('Splash',{goal: 'Config'})} />,
+            headerBackImage: ()=> <ReturnButton />,})}/>
         <Stack.Screen name="Admin" component={AdminScreen} options={({navigation}) =>({headerTitle: '',headerRight: ()=> <ConfigButton onPress={()=>navigation.navigate('Splash',{goal: 'Config'})} />,})}/>
         <Stack.Screen name="AdminMensagens" component={MensagensScreen} options={({navigation}) =>({headerTitle: '',headerRight: ()=> <ConfigButton onPress={()=>navigation.navigate('Splash',{goal: 'Config'})} />,})}/>
         <Stack.Screen 
           name="Mensagem" 
           component={MessageScreen} 
-          options={({navigation}) =>({headerTitle: 'Escreva seu relato', headerStyle:{ backgroundColor: '#FFBB00' }, headerTitleStyle:{ fontFamily:'Roboto-Bold', fontSize: 23, },headerRight: ()=> <ConfigButton onPress={()=>navigation.navigate('Splash',{goal: 'Config'})} />,})}/>
+          options={({navigation}) =>({headerTitle: 'Escreva seu relato',headerRight: ()=> <ConfigButton onPress={()=>navigation.navigate('Splash',{goal: 'Config'})} />,})}/>
         <Stack.Screen 
           name="Config" 
           component={ConfigScreen} 
-          options={{headerTitle: 'Configurações', headerStyle:{ backgroundColor: '#FFBB00'}, headerTitleStyle:{ fontFamily:'Roboto-Bold', fontSize: 23, }}}/>
-        {/* TELA DE SOBRE, CONSERTAR!
+          options={{headerTitle: 'Configurações'}}/>
         <Stack.Screen
           name="About"
           component={AboutScreen}
-  options={({navigation}) =>({headerTitle: 'Sobre', headerStyle:{ backgroundColor: '#FFBB00'}, headerTitleStyle:{ fontFamily: 'Roboto-Bold', fontSize: 23, }})}/> */}
+  options={({navigation}) =>({headerTitle: 'Sobre'})}/>
       </Stack.Navigator>
     </NavigationContainer>
   );  

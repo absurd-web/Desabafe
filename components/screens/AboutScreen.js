@@ -8,3 +8,11 @@ import {
     View,
     Image,
 } from 'react-native';
+const AboutScreen = () =>{
+    return(
+        <View>
+            <Text>Sobre</Text>
+        </View>
+    );
+}
+export default AboutScreen;

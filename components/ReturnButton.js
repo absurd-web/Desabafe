@@ -8,9 +8,9 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-const ReturnButton = (props) =>{
+const ReturnButton = () =>{
     return(
-        <TouchableOpacity onPress={()=>props.onPress()}>
+        <TouchableOpacity>
             <View>
                 <Image
                     style={styles.config}
