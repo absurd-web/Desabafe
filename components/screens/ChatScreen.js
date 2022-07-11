@@ -12,12 +12,18 @@ import {
     View,
     TouchableWithoutFeedbackBase,
     Image,
+    TouchableOpacity,
 } from 'react-native';
 const BotaoConfirmar = (props) =>{
     return(
-        <Pressable onPress={()=>props.onPress()} style={styles.opcaoConfirmar}>
-            <Text style={styles.confirmarText}>C</Text>
-        </Pressable>
+        <TouchableOpacity onPress={()=>props.onPress()}>
+            <View>
+                <Image
+                    style={styles.opcaoConfirmar}
+                    source={require('./images/icons/play.png')}
+                />
+            </View>
+        </TouchableOpacity>
     );
 }
 const ChatOption = (props) =>{
@@ -30,6 +36,7 @@ const ChatOption = (props) =>{
         </View>
     );
 };
+
 class ChatOptions extends Component{
     constructor(props){
         super(props);
@@ -57,14 +64,17 @@ class ChatOptions extends Component{
         );
     }
 }
+
 const ChatScreen = ({navigation}) =>{
     return(
         //Caixa de mensagem do app
         <View style={styles.container}>
             <View style={styles.bubble}>
-                {/*<Pressable><Text>Voltar</Text></Pressable>*/}
-                <Text style={styles.bubbleText}>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent porttitor tortor tempor erat maximus, in vehicula dui finibus. Maecenas ut euismod ligula, nec porta turpis. Vivamus ullamcorper blandit eros at finibus. Suspendisse porttitor nisi id lacus eleifend cursus.</Text>
+                {/* Triângulo do balão de fala */}
+                <View style={styles.triangle}></View>
+                <Text style={styles.bubbleText}>Lorem ipsum dolor sit amet</Text>
             </View>
+
             {/* Imagem do mascote  */}
             <Image
                 style={styles.mascote}
@@ -75,6 +85,7 @@ const ChatScreen = ({navigation}) =>{
         </View>
     );
 };
+
 const styles = StyleSheet.create({
     container:{
         flex: 1,
@@ -87,9 +98,13 @@ const styles = StyleSheet.create({
         backgroundColor: '#8A897C',
         padding: 20,
         marginHorizontal: 20,
-        marginTop: 30,
-        marginBottom: 10,
+        marginTop: 15,
+        marginBottom: 0,
         borderRadius: 20,
+        minWidth: '80%',
+        maxWidth: '80%',
+        minHeight: '27%',
+        maxHeight: '27%',
     },
     /* Estilo do texto da caixa de diálogo */
     bubbleText:{
@@ -105,42 +120,60 @@ const styles = StyleSheet.create({
         flex: 6,
         backgroundColor: '#181D27',
         marginBottom: 9,
-        marginLeft: 40,
-        marginRight: 40,
-        padding: 18,
+        minWidth: '80%',
+        maxWidth: '80%',
+        padding: 15,
         borderRadius: 30,
     },
     opcaoSelected:{
         flex: 4,
         backgroundColor: '#181D27',
         marginBottom: 9,
-        marginLeft: 40,
-        padding: 18,
+        minWidth: '63.67%',
+        maxWidth: '63.67%',
+        padding: 15,
         borderRadius: 30,
     },
     /* Estilo do texto das opções de diálogo */
     opcaoText:{
+        paddingLeft: 15,
         fontFamily:'Roboto-Regular',
         color: 'white',
         fontSize: 17,
     },
-    /* Botão de confirmar e opção selecionada */
+    /* Botão de confirmar */
     opcaoConfirmar:{
-        flex: 1.15,
-        backgroundColor: '#181D27',
-        marginRight: 40,
-        borderRadius: 40,
-        marginBottom: 7,
+        width: 54,
+        height: 54,
         justifyContent: 'center',
-    },
-    confirmarText:{
-        color: 'white',
-        textAlign: 'center',
+        marginRight: 0,
+        marginLeft: 10,
     },
     mascote:{
         width: 210,
         height: 200,
         marginBottom: 10,
     },
+    scrollView:{
+        marginHorizontal: 40,
+    },
+    /* Triângulo da caixa de texto */
+    triangle: {
+        width: 0,
+        height: 0,
+        backgroundColor: 'transparent',
+        borderStyle: 'solid',
+        borderTopWidth: 0,
+        borderRightWidth: 25,
+        borderBottomWidth: 60,
+        borderLeftWidth: 0,
+        borderTopColor: 'transparent',
+        borderRightColor: '#8A897C',
+        borderBottomColor: 'transparent',
+        borderLeftColor: 'transparent',
+        position: 'absolute',
+        top: 170,
+        left: 44,
+      },   
 });
 export default ChatScreen;

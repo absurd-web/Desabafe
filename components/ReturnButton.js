@@ -8,13 +8,13 @@ import {
     TouchableOpacity
 } from 'react-native';
 
-const ConfigButton = (props) =>{
+const ReturnButton = (props) =>{
     return(
         <TouchableOpacity onPress={()=>props.onPress()}>
             <View>
                 <Image
                     style={styles.config}
-                    source={require('./icons/settings_icon.png')}
+                    source={require('./icons/return.png')}
                 />
             </View>
         </TouchableOpacity> 
@@ -26,9 +26,9 @@ const styles = StyleSheet.create({
         flex: 1,
     },
     config: {
-        width: 35,
-        height: 35,
+        width: 40,
+        height: 40,
     },
 });
 
-export default ConfigButton;
+export default ReturnButton;
