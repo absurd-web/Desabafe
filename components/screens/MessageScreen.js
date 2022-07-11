@@ -131,7 +131,7 @@ texto para enviar depois?`}</Text>
                 </View>
             </Modal>
             <TextInput style={styles.input} onChangeText={(value)=>setConteudo(value)} multiline placeholder={rascunho} defaultValue={isDefault ? '' : rascunho}
-          placeholderTextColor={'black'}/>
+          placeholderTextColor={'gray'}/>
             <Text style={[styles.message, {color: isError ? 'red' : 'green'}]}>{message ? getMessage() : null}</Text>
             <Pressable style={styles.button} onPress={()=>{setModalVisible(!modalVisible);setIsEnviar(true);}}>
                 <Text style={styles.textButton}>Enviar</Text>
