@@ -4,6 +4,8 @@ import type {Node} from 'react';
 import SplashScreen from './components/screens/SplashScreen';
 import LoginScreen from './components/screens/LoginScreen';
 import ChatScreen from './components/screens/ChatScreen';
+import AdminScreen from './components/screens/AdminScreen';
+import MensagensScreen from './components/screens/MensagensScreen';
 import MessageScreen from './components/screens/MessageScreen';
 import ConfigScreen from './components/screens/ConfigScreen';
 import { NavigationContainer } from '@react-navigation/native';
@@ -24,6 +26,8 @@ const App: () => Node = () => {
           component={ChatScreen} 
           options={({navigation}) =>({headerTitle: '', headerStyle:{ backgroundColor: '#FFBB00',},headerRight: ()=> <ConfigButton onPress={()=>navigation.navigate('Splash',{goal: 'Config'})} />,
             headerLeft: ()=> <ReturnButton onPress={()=>navigation.navigate('Splash',{goal: 'Login'})} />,})}/>
+        <Stack.Screen name="Admin" component={AdminScreen} options={({navigation}) =>({headerTitle: '',headerRight: ()=> <ConfigButton onPress={()=>navigation.navigate('Splash',{goal: 'Config'})} />,})}/>
+        <Stack.Screen name="AdminMensagens" component={MensagensScreen} options={({navigation}) =>({headerTitle: '',headerRight: ()=> <ConfigButton onPress={()=>navigation.navigate('Splash',{goal: 'Config'})} />,})}/>
         <Stack.Screen 
           name="Mensagem" 
           component={MessageScreen} 

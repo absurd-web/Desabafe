@@ -46,7 +46,7 @@ const LoginScreen = ({navigation}) =>{
           try {
               const jsonRes = await res.json();
               if (res.status === 200) {
-                navigation.replace('Chat');
+                  navigation.replace('Splash',{goal: 'Chat'});
               }
           } catch (err) {
               console.log(err);
