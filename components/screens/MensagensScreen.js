@@ -75,7 +75,6 @@ const Envios = (props) =>{
 const MensagensScreen = ({route,navigation}) =>{
     const { token, data, initialCategory } = route.params;
     const formattedData = data.map(x=>x.Categoria);
-    console.log(data);
     const [categoria, setCategoria] = useState(initialCategory);
     return(
         <View>
