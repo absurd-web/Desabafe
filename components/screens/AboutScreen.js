@@ -87,7 +87,7 @@ const AboutScreen = () =>{
                 <Text style={styles.buttonText}>Davi Vasconcelos (programador)</Text>
             </Pressable>
 
-            <Pressable style={styles.button} onPress={()=> loadInBrowser('https://google.com')}>
+            <Pressable style={styles.button} onPress={()=> loadInBrowser('https://www.instagram.com/contosbyv/')}>
                 <Text style={styles.buttonText}>Vitor Martins (designer)</Text>
             </Pressable>
         </View>

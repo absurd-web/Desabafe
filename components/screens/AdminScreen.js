@@ -11,18 +11,20 @@ import {
     View,
     ActivityIndicator,
 } from 'react-native';
+
 const RegistrosView = (props) =>{
   return(
     props.data.map((item,index)=>{
       return (
-        <Pressable key={index} onPress={()=>props.navigation.navigate('AdminMensagens',{token: props.token, data: props.data, initialCategory: item.Categoria})}>
-          <Text>{item.Categoria}</Text>
-          <Text>{item.cnt}</Text>
+        <Pressable style={styles.box} key={index} onPress={()=>props.navigation.navigate('AdminMensagens',{token: props.token, data: props.data, initialCategory: item.Categoria})}>
+          <Text style={styles.categoriasText}>{item.Categoria}</Text>
+          <Text style={styles.quantEnvios}>{item.cnt + ' Envios'}</Text>
         </Pressable>
       );
     })
   );
 }
+
 const Registros = (props) =>{
     const token = props.token;
     const [isLoaded,setIsLoaded] = useState(false);
@@ -69,21 +71,25 @@ const Registros = (props) =>{
         registros
     );
 }
+
 const AdminScreen = ({route, navigation}) => {
     const {token} = route.params;
     return(
-        <View>
-            <Text>Registros</Text>
-            <Text>Categorias</Text>
-            <Registros token={token} navigation={navigation}/>
+        <View style={styles.container}>
+            <Text style={styles.register}>Registros</Text>
+            <Text style={styles.categorias}>Categorias</Text>
+
+            {/* Categorias */}
+              <Registros token={token} navigation={navigation}/>
         </View>
     );
 }
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
-      alignItems: 'center',
-      backgroundColor: '#ecf0f1',
+      alignItems: 'flex-start',
+      backgroundColor: 'white', 
     },
     divisor: {
       borderBottomColor: 'black',
@@ -184,6 +190,45 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center"
+  },
+  register:{
+    fontFamily: 'Roboto-Bold',
+    color: 'black',
+    fontSize: 24,
+    marginTop: 40,
+    marginLeft: 40,
+  },
+  categorias: {
+    fontFamily: 'Roboto-Bold',
+    color: 'black',
+    fontSize: 19,
+    marginTop: 20,
+    marginLeft: 40,
+  },
+  categoriasText: {
+    fontFamily: 'Roboto-Bold',
+    color: 'black',
+    fontSize: 20,
+    marginTop: 10,
+    marginLeft: 10,
+  },
+  quantEnvios: {
+    fontFamily: 'Roboto-Bold',
+    color: 'black',
+    fontSize: 20,
+    marginTop: 10,
+    marginLeft: 10,
+  },
+  box: {
+    backgroundColor: '#D2D7DF',
+    marginLeft: 40,
+    marginTop: 20,
+    minWidth:'80%',
+    minHeight: 90,
+    borderBottomLeftRadius: 15,
+    borderBottomRightRadius: 15,
+    borderTopColor: '#E5E5E5',
+    borderTopWidth: 7,
   }
 });
 export default AdminScreen;
