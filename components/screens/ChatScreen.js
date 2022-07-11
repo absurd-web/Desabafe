@@ -1,4 +1,5 @@
 import React,{ useState, useEffect, Component } from 'react';
+import { useFocusEffect } from '@react-navigation/native';
 import {
     SafeAreaView,
     ScrollView,
@@ -32,47 +33,132 @@ const ChatOption = (props) =>{
             <Pressable onPress={()=>props.onPress()} style={props.isSelected ? styles.opcaoSelected : styles.opcao}>
                 <Text style={styles.opcaoText}>{props.conteudo}</Text>
             </Pressable>
-            {props.isSelected && <BotaoConfirmar onPress={()=>props.navigation.navigate('Splash',{goal:'Mensagem'})}/>}
+            {props.isSelected && <BotaoConfirmar onPress={()=>typeof(props.goal) === 'string' ? props.navigation.push('Chat',{goal: props.goal}) : props.navigation.navigate('Splash',{goal : 'Mensagem'})}/>}
         </View>
     );
 };
-
 class ChatOptions extends Component{
     constructor(props){
         super(props);
+        this.dataIndex = this.props.dataIndex;
+        this.data = this.props.data[this.dataIndex].options;
         this.state = {
-            opcoes: Array(5).fill(false),
+            opcoes: Array(this.data.length).fill(false),
         };
     }
+/*     componentDidUpdate(prevProps){
+        if (this.props.dataIndex !== prevProps.dataIndex) {
+            this.dataIndex = this.props.dataIndex;
+            this.data = this.props.data[this.dataIndex].options;
+            this.setState({
+                opcoes: Array(this.data.length).fill(false),
+            });
+        }
+    } */
     aoPressionar(i){
         const opcoes = this.state.opcoes.slice();
         if(!opcoes[i]) opcoes.fill(false);
         opcoes[i] = !opcoes[i];
         this.setState({opcoes: opcoes});
     }
-    renderOpcao(i,conteudo){
-        return <ChatOption conteudo={conteudo} navigation={this.props.navigation} onPress={()=>this.aoPressionar(i)} isSelected={this.state.opcoes[i]}/>;
-    }
     render(){
         return(
-            <>
-            {this.renderOpcao(0,"Depressão")}
-            {this.renderOpcao(1,"Ansiedade")}
-            {this.renderOpcao(2,"Fadiga")}
-            {this.renderOpcao(3,"Pular")}
-            </>
+            this.data.map((item,index)=>{
+                return (
+                  <ChatOption key={index} conteudo={item.desc} goal={item.goal} navigation={this.props.navigation} isSelected={this.state.opcoes[index]} onPress={()=>this.aoPressionar(index)}/>
+                );
+            })
         );
     }
 }
 
-const ChatScreen = ({navigation}) =>{
+const ChatScreen = ({route, navigation}) =>{
+    const {goal} = route.params;
+    const [dataIndex, setDataIndex] = goal ? useState(goal) : useState('1');
+/*     useFocusEffect(
+        React.useCallback(() => {
+          // Do something when the screen is focused
+    
+          return () => {
+            setDataIndex('1');
+          };
+        }, [])
+    ); */
+/*     const changeState = (value) =>{
+        setDataIndex(value);
+    } */
+    const data = {
+        1 : {
+            desc: 'Deseja conversar com o assistente ou escrever o relato?',
+            options: [
+                {desc: 'Escrever relato', goal: navigation},
+                {desc: 'Conversar', goal: '2'},
+            ],
+        },
+        2 : {
+            desc: 'Você já sabe sobre o que deseja conversar?',
+            options: [
+                {desc: 'Sim', goal: '3'},
+                {desc: 'Não', goal: '4'},
+            ],
+        },
+        3 : {
+            desc: 'Você quer desabafar exclusivamente sobre algo que você sente ou sobre algo que está acontecendo?',
+            options: [
+                {desc: 'Sentimento', goal: 'B1'},
+                {desc: 'Experiência', goal: 'B2'},
+            ],
+        },
+        4 : {
+            desc: '4. Deseja receber auxilio para elaborar o que está sentindo?',
+            options: [
+                {desc: 'Sim', goal: 'A1'},
+                {desc: 'Não', goal: navigation},
+            ],
+        },
+        'A1' : {
+            desc: 'A.1. Qual sentimento você diria ser o mais comum no seu dia-a-dia?',
+            options: [
+                {desc: 'Raiva', goal: 'A2'},
+                {desc: 'Cansaço', goal: 'A2'},
+                {desc: 'Tristeza', goal: 'A2'},
+                {desc: 'Tristeza', goal: 'A2'}
+            ],
+        },
+        'B1' : {
+            desc: 'Esses sentimentos envolvem algum dos seguintes assuntos?',
+            options: [
+                {desc: 'Relacionamentos', goal: 'B3'},
+                {desc: 'Quem eu sou', goal: '4'},
+                {desc: 'Outra Coisa (indefinido)', goal: '4'},
+                {desc: 'Meu futuro', goal: '4'},
+            ],
+        },
+        'B2' : {
+            desc: 'Isso está acontecendo em que ambiente?',
+            options: [
+                {desc: 'Casa', goal: '4'},
+                {desc: 'Escola', goal: '4'},
+                {desc: 'Trabalho', goal: '4'},
+                {desc: 'JCPM', goal: '4'},
+            ],
+        },
+        'B3' : {
+            desc: 'Qual desses aspectos sobre relacionamentos mais está lhe afetando?',
+            options: [
+                {desc: 'Pessoa específica', goal: '4'},
+                {desc: 'Sexualidade', goal: '4'},
+                {desc: 'Amigos', goal: '4'},
+            ],
+        },
+    };
     return(
         //Caixa de mensagem do app
         <View style={styles.container}>
             <View style={styles.bubble}>
                 {/* Triângulo do balão de fala */}
                 <View style={styles.triangle}></View>
-                <Text style={styles.bubbleText}>Lorem ipsum dolor sit amet</Text>
+                <Text style={styles.bubbleText}>{data[dataIndex].desc}</Text>
             </View>
 
             {/* Imagem do mascote  */}
@@ -81,7 +167,7 @@ const ChatScreen = ({navigation}) =>{
                 source={require('./images/pet.png')}
             />
             {/* Opções de diálogo */}
-            <ChatOptions navigation={navigation}/>
+            <ChatOptions dataIndex={dataIndex} data={data} navigation={navigation}/>
         </View>
     );
 };
