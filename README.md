@@ -19,11 +19,6 @@ Na pasta root execute:
 `npx react-native start`  
 e  
 `npx react-native run-android`  
-Mova para o ./backend:  
-`cd backend`  
-Execute o servidor de backend:  
-`npx nodemon ./app.js`  
-Rode um servidor de mysql com esse [banco de dados](https://github.com/absurd-web/Desabafe/blob/122f038bb1a1cf503cbad98002b0d72d2a47bd72/desabafe.sql) instalado.
 
 ## Mapeamento de funcionalidades
 | Requisito  | Descrição | Codificação
