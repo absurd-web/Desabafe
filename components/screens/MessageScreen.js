@@ -15,7 +15,9 @@ const MessageScreen = ({route, navigation}) => {
     const id = token.id;
     const [rascunho,setRascunho] = useState(`Nesse espaço você irá escrever o seu desabafo! 
     Quando terminar, você pode enviar, mas também pode mudar de idéia.`);
+    const [isDefault, setIsDefault] = useState(false);
     const [conteudo, setConteudo] = useState('');
+    const [categoria, setCategoria] = useState('Escola');
     const [modalVisible, setModalVisible] = useState(false);
     const [isEnviar, setIsEnviar] = useState(true);
     const [isUrgente, setIsUrgente] = useState(false);
@@ -28,8 +30,10 @@ const MessageScreen = ({route, navigation}) => {
     const getRascunho = async () =>{
         const value = await AsyncStorage.getItem(token.name);
         if(value != null){
+            setIsDefault(false);
             return value;
         }else{
+            setIsDefault(true);
             return `Nesse espaço você irá escrever o seu desabafo! 
             Quando terminar, você pode enviar, mas também pode mudar de idéia.`;
         }
@@ -45,6 +49,7 @@ const MessageScreen = ({route, navigation}) => {
         if(isEnviar){
           const payload = {
             conteudo,
+            categoria,
             id,
             isUrgente,
           };
@@ -110,7 +115,7 @@ texto para enviar depois?`}</Text>
                 </View>
                 </View>
             </Modal>
-            <TextInput style={styles.input} onChangeText={(value)=>setConteudo(value)} multiline defaultValue={rascunho}
+            <TextInput style={styles.input} onChangeText={(value)=>setConteudo(value)} multiline placeholder={rascunho} defaultValue={isDefault ? '' : rascunho}
           placeholderTextColor={'black'}/>
             <Text style={[styles.message, {color: isError ? 'red' : 'green'}]}>{message ? getMessage() : null}</Text>
             <Pressable style={styles.button} onPress={()=>{setModalVisible(!modalVisible);setIsEnviar(true);}}>

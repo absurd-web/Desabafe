@@ -38,7 +38,11 @@ class SplashScreen extends Component{
                         const jsonRes = await res.json();
                         if (res.status === 200) {
                             if(goal != 'Login'){
-                                navigation.replace(goal,{token: jsonRes.token});
+                                if(goal == 'Chat' && jsonRes.token.level == 0){
+                                    navigation.replace('Admin',{token: jsonRes.token});
+                                }else{
+                                    navigation.replace(goal,{token: jsonRes.token});
+                                }
                             }else{
                                 this.resetToLogin(navigation);
                             }
