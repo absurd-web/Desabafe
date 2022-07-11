@@ -17,7 +17,7 @@ const EnviosView = (props) =>{
       props.data.map((item,index)=>{
         return (
           <View key={index}>
-            <Text>{item.usuario.NomeUsuario}</Text>
+            <Text>{item.usuario === null ? 'Anônimo' : item.usuario.NomeUsuario}</Text>
             <Text>{item.Conteudo}</Text>
           </View>
         );

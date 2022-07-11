@@ -70,7 +70,7 @@ const ConfigScreen = ({route, navigation}) =>{
   const endSession = async () => {
     try {
       await AsyncStorage.removeItem('@token');
-      navigation.replace('Login');
+      navigation.navigate('Splash',{goal:'Login'});
     } catch(e) {
       console.log(e);
     }
