@@ -75,11 +75,11 @@ const AboutScreen = () =>{
                 <Text style={styles.buttonText}>Israel Gomes (programador)</Text>
             </Pressable>
 
-            <Pressable style={styles.button}>
+            <Pressable style={styles.button} onPress={()=> loadInBrowser('https://aik0.artstation.com')}>
                 <Text style={styles.buttonText}>Kaio Forte (designer)</Text>
             </Pressable>
 
-            <Pressable style={styles.button}>
+            <Pressable style={styles.button} onPress={()=> loadInBrowser('https://google.com')}>
                 <Text style={styles.buttonText}>Nickolas Gabriel (revisor)</Text>
             </Pressable>
 
@@ -87,7 +87,7 @@ const AboutScreen = () =>{
                 <Text style={styles.buttonText}>Davi Vasconcelos (programador)</Text>
             </Pressable>
 
-            <Pressable style={styles.button}>
+            <Pressable style={styles.button} onPress={()=> loadInBrowser('https://google.com')}>
                 <Text style={styles.buttonText}>Vitor Martins (designer)</Text>
             </Pressable>
         </View>
