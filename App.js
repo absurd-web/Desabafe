@@ -4,6 +4,8 @@ import type {Node} from 'react';
 import SplashScreen from './components/screens/SplashScreen';
 import LoginScreen from './components/screens/LoginScreen';
 import ChatScreen from './components/screens/ChatScreen';
+import AdminScreen from './components/screens/AdminScreen';
+import MensagensScreen from './components/screens/MensagensScreen';
 import MessageScreen from './components/screens/MessageScreen';
 import ConfigScreen from './components/screens/ConfigScreen';
 import { NavigationContainer } from '@react-navigation/native';
@@ -18,6 +20,8 @@ const App: () => Node = () => {
         <Stack.Screen name="Splash" component={SplashScreen} initialParams={{ goal: 'Chat' }} options={{headerShown: false}}/>
         <Stack.Screen name="Login" component={LoginScreen} options={{headerShown: false}}/>
         <Stack.Screen name="Chat" component={ChatScreen} options={({navigation}) =>({headerTitle: '',headerRight: ()=> <ConfigButton onPress={()=>navigation.navigate('Splash',{goal: 'Config'})} />,})}/>
+        <Stack.Screen name="Admin" component={AdminScreen} options={({navigation}) =>({headerTitle: '',headerRight: ()=> <ConfigButton onPress={()=>navigation.navigate('Splash',{goal: 'Config'})} />,})}/>
+        <Stack.Screen name="AdminMensagens" component={MensagensScreen} options={({navigation}) =>({headerTitle: '',headerRight: ()=> <ConfigButton onPress={()=>navigation.navigate('Splash',{goal: 'Config'})} />,})}/>
         <Stack.Screen name="Mensagem" component={MessageScreen} options={({navigation}) =>({headerTitle: 'Escreva seu relato',headerRight: ()=> <ConfigButton onPress={()=>navigation.navigate('Splash',{goal: 'Config'})} />,})}/>
         <Stack.Screen name="Config" component={ConfigScreen} options={{headerTitle: 'Configurações'}}/>
       </Stack.Navigator>
