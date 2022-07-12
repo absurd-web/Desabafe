@@ -6,10 +6,13 @@ import {
     Pressable,
     Text,
     View,
+    Modal,
     Image,
 } from 'react-native';
 const ConfigScreen = ({route, navigation}) =>{
   const {token} = route.params;
+  const [modalVisible, setModalVisible] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(token.level == 0 ? true : false);
   const [isAnon, setIsAnon] = useState(token.email == '' ? true : false);
   const [isError, setIsError] = useState(false);
   const [message, setMessage] = useState('');
@@ -125,9 +128,32 @@ const ConfigScreen = ({route, navigation}) =>{
                 {!isAnon && <Text style={styles.buttonText}>Trocar para anônimo</Text>}
             </Pressable>
           </View>}
-
+          <Modal
+                animationType="fade"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                setModalVisible(!modalVisible);
+                }}
+            >
+                <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                    <Text>Você tem certeza que deseja apagar sua conta?</Text>
+                    <Pressable
+                    onPress={deleteAccount}
+                    >
+                    <Text>Apagar minha conta</Text>
+                    </Pressable>
+                    <Pressable
+                    onPress={() => setModalVisible(!modalVisible)}
+                    >
+                    <Text>Cancelar</Text>
+                    </Pressable>
+                </View>
+                </View>
+          </Modal>
           {/* Excluir conta */}
-          {!isAnon && <View style={styles.row}>
+          {(!isAnon && !isAdmin) && <View style={styles.row}>
             <View>
               <Image
                 style={styles.icons}
@@ -135,8 +161,8 @@ const ConfigScreen = ({route, navigation}) =>{
               />
             </View>
 
-            <Pressable style={styles.button} onPress={deleteAccount}>
-                {!isAnon && <Text style={styles.buttonText}>Excluir Conta</Text>}
+            <Pressable style={styles.button} onPress={()=>setModalVisible(!modalVisible)}>
+                {(!isAnon && !isAdmin) && <Text style={styles.buttonText}>Excluir Conta</Text>}
             </Pressable>
           </View>}
 
