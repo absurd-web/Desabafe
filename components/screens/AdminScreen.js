@@ -10,6 +10,8 @@ import {
     Switch,
     View,
     ActivityIndicator,
+    SafeAreaView,
+    ScrollView,
 } from 'react-native';
 
 const RegistrosView = (props) =>{
@@ -75,13 +77,15 @@ const Registros = (props) =>{
 const AdminScreen = ({route, navigation}) => {
     const {token} = route.params;
     return(
-        <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.scrollView}>
             <Text style={styles.register}>Registros</Text>
             <Text style={styles.categorias}>Categorias</Text>
 
             {/* Categorias */}
               <Registros token={token} navigation={navigation}/>
-        </View>
+        </ScrollView>
+      </SafeAreaView>
     );
 }
 
@@ -91,6 +95,10 @@ const styles = StyleSheet.create({
       alignItems: 'flex-start',
       backgroundColor: 'white', 
     },
+    scrollView:{
+      backgroundColor: 'white',
+      marginHorizontal: 0,
+  },
     divisor: {
       borderBottomColor: 'black',
       borderBottomWidth: 1,

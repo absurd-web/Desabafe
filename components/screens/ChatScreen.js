@@ -99,7 +99,7 @@ const ChatScreen = ({route, navigation}) =>{
     } */
     const data = {
         1 : {
-            desc: 'Olá! Eu sou [NOME], e estou aqui pra te ajudar a enviar seu desabafo de forma segura para que o Instituto JCPM possa te auxiliar de forma adequada. A gente pode conversar um pouco sobre o seu problema antes, ou você pode ir direto para a escrita do desabafo, o que acha?',
+            desc: 'Olá! Eu sou Milo, e estou aqui pra te ajudar a enviar seu desabafo de forma segura para que o Instituto JCPM possa te auxiliar de forma adequada. A gente pode conversar um pouco sobre o seu problema antes, ou você pode ir direto para a escrita do desabafo, o que acha?',
             img: 'pose_0',
             options: [
                 {desc: 'Quero conversar.', goal: '2'},

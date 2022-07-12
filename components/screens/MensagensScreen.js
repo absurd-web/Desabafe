@@ -11,6 +11,8 @@ import {
     Switch,
     View,
     ActivityIndicator,
+    SafeAreaView,
+    ScrollView,
 } from 'react-native';
 
 const EnviosView = (props) =>{
@@ -81,7 +83,8 @@ const MensagensScreen = ({route,navigation}) =>{
     const formattedData = data.map(x=>x.Categoria);
     const [categoria, setCategoria] = useState(initialCategory);
     return(
-        <View style={styles.container}>
+      <SafeAreaView style={styles.container}>
+        <ScrollView style={styles.scrollView}>
             <Text style={styles.registro}>Registros</Text>
 
             {/* Dropdown */}
@@ -106,7 +109,8 @@ const MensagensScreen = ({route,navigation}) =>{
 
             <Text style={styles.envios}>Envios</Text>
             <Envios token={token} initialCategory={categoria} navigation={navigation}/>
-        </View>
+        </ScrollView>
+      </SafeAreaView>
     );
 }
 
@@ -116,6 +120,10 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     backgroundColor: 'white', 
   },
+  scrollView:{
+    backgroundColor: 'white',
+    marginHorizontal: 0,
+},
   registro: {
     fontFamily: 'Roboto-Bold',
     fontSize: 24,

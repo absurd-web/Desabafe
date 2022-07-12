@@ -128,6 +128,8 @@ const ConfigScreen = ({route, navigation}) =>{
                 {!isAnon && <Text style={styles.buttonText}>Trocar para anônimo</Text>}
             </Pressable>
           </View>}
+
+          {/* Modal de excluir conta */}
           <Modal
                 animationType="fade"
                 transparent={true}
@@ -137,21 +139,24 @@ const ConfigScreen = ({route, navigation}) =>{
                 }}
             >
                 <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                    <Text>Você tem certeza que deseja apagar sua conta?</Text>
-                    <Pressable
-                    onPress={deleteAccount}
-                    >
-                    <Text>Apagar minha conta</Text>
-                    </Pressable>
-                    <Pressable
-                    onPress={() => setModalVisible(!modalVisible)}
-                    >
-                    <Text>Cancelar</Text>
-                    </Pressable>
-                </View>
+                  <View style={styles.modalView}>
+                      <Text style={styles.modalText}>Você tem certeza que deseja apagar sua conta?</Text>
+                      <Pressable
+                      style={styles.deleteButton}
+                      onPress={deleteAccount}
+                      >
+                        <Text style={styles.buttonText2}>Apagar minha conta</Text>
+                      </Pressable>
+                      <Pressable
+                      style={styles.cancelButton}
+                      onPress={() => setModalVisible(!modalVisible)}
+                      >
+                        <Text style={styles.buttonText3}>Cancelar</Text>
+                      </Pressable>
+                  </View>
                 </View>
           </Modal>
+
           {/* Excluir conta */}
           {(!isAnon && !isAdmin) && <View style={styles.row}>
             <View>
@@ -162,7 +167,7 @@ const ConfigScreen = ({route, navigation}) =>{
             </View>
 
             <Pressable style={styles.button} onPress={()=>setModalVisible(!modalVisible)}>
-                {(!isAnon && !isAdmin) && <Text style={styles.buttonText}>Excluir Conta</Text>}
+                {(!isAnon && !isAdmin) && <Text style={styles.buttonText}>Excluir conta</Text>}
             </Pressable>
           </View>}
 
@@ -176,7 +181,7 @@ const ConfigScreen = ({route, navigation}) =>{
             </View>
 
           <Pressable style={styles.button} onPress={endSession}>
-              <Text style={styles.buttonText}>Encerrar Sessão</Text>
+              <Text style={styles.buttonText}>Encerrar sessão</Text>
           </Pressable>
           </View>
 
@@ -236,6 +241,64 @@ const styles = StyleSheet.create({
       width: 30,
       height: 30,
       marginLeft: 30,
+    },
+    centeredView: {
+      flex: 1,
+      justifyContent: "center",
+      alignItems: "center",
+      backgroundColor: 'rgba(0, 0, 0, 0.5)'
+    },
+    modalView: {
+      margin: 20,
+      backgroundColor: "#FFBB00",
+      borderRadius: 20,
+      padding: 35,
+      alignItems: "center",
+      shadowColor: "#000",
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.25,
+      shadowRadius: 4,
+      elevation: 5
+    },
+    modalText: {
+      color: 'black',
+      fontFamily: 'Roboto-Bold',
+      marginBottom: 15,
+      textAlign: "center",
+      fontSize: 19,
+    },
+    deleteButton: {
+      backgroundColor: 'black',
+      borderRadius: 10,
+      padding: 10,
+      minWidth: '70%',
+      minHeight: 55,
+      marginBottom: '5%',
+    },
+    cancelButton: {
+      backgroundColor: '#FFBB00',
+      borderRadius: 10,
+      padding: 10,
+      minWidth: '70%',
+      minHeight: 55,
+      marginBottom: 0,
+    },
+    buttonText2: {
+      fontFamily: 'Roboto-Bold',
+      color: 'white',
+      fontSize: 17,
+      alignSelf: 'center',
+      marginTop: 3,
+    },
+    buttonText3: {
+      fontFamily: 'Roboto-Bold',
+      color: 'black',
+      fontSize: 17,
+      alignSelf: 'center',
+      marginTop: 0,
     },
 });
 export default ConfigScreen;
