@@ -15,6 +15,7 @@ import {
 const SentScreen = ({navigation}) =>{
     return(
         <View style={styles.container}>
+            <Image style={styles.icon} source={require('./images/icons/sent_icon.png')}/>
             <Text style={styles.desabafoEnv}>Desabafo enviado</Text>
             <Text style={styles.obrigado}>Obrigado</Text>
             <View style={styles.divisor}/>
@@ -65,8 +66,15 @@ const styles = StyleSheet.create({
         minWidth: 320,
         marginVertical: 25,
         marginBottom: 35,
-        marginTop: 35,
+        marginTop: 50,
       },
+    icon:{
+        marginTop: '40%',
+        marginBottom: '15%',
+        width: 220,
+        height: 220,
+        alignSelf: 'center',
+    },
 });
 
 export default SentScreen;
