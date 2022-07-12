@@ -28,12 +28,22 @@ const BotaoConfirmar = (props) =>{
     );
 }
 const ChatOption = (props) =>{
+    const [categoria,setCategoria] = useState('Não definido');
     return(
         <View style={styles.innerContainer}>
             <Pressable onPress={()=>props.onPress()} style={props.isSelected ? styles.opcaoSelected : styles.opcao}>
                 <Text style={styles.opcaoText}>{props.conteudo}</Text>
             </Pressable>
-            {props.isSelected && <BotaoConfirmar onPress={()=>typeof(props.goal) === 'string' ? props.navigation.push('Chat',{goal: props.goal}) : props.navigation.navigate('Splash',{goal : 'Mensagem'})}/>}
+            {props.isSelected && <BotaoConfirmar onPress={()=>{
+            if(typeof(props.goal) === 'string'){
+                props.navigation.push('Chat',{goal: props.goal});
+                if(props.categoria){
+                    setCategoria(props.categoria);
+                }
+            }else{
+                props.navigation.navigate('Splash',{goal : 'Mensagem',categoria : categoria});
+            }
+            }}/>}
         </View>
     );
 };
@@ -65,7 +75,7 @@ class ChatOptions extends Component{
         return(
             this.data.map((item,index)=>{
                 return (
-                  <ChatOption key={index} conteudo={item.desc} goal={item.goal} navigation={this.props.navigation} isSelected={this.state.opcoes[index]} onPress={()=>this.aoPressionar(index)}/>
+                  <ChatOption key={index} conteudo={item.desc} categoria={item.categoria} goal={item.goal} navigation={this.props.navigation} isSelected={this.state.opcoes[index]} onPress={()=>this.aoPressionar(index)}/>
                 );
             })
         );
@@ -89,66 +99,74 @@ const ChatScreen = ({route, navigation}) =>{
     } */
     const data = {
         1 : {
-            desc: 'Deseja conversar com o assistente ou escrever o relato?',
+            desc: 'Olá! Eu sou [NOME], e estou aqui pra te ajudar a enviar seu desabafo de forma segura para que o Instituto JCPM possa te auxiliar de forma adequada. A gente pode conversar um pouco sobre o seu problema antes, ou você pode ir direto para a escrita do desabafo, o que acha?',
             options: [
-                {desc: 'Escrever relato', goal: navigation},
-                {desc: 'Conversar', goal: '2'},
+                {desc: 'Quero conversar.', goal: '2'},
+                {desc: 'Quero desabafar logo.', goal: navigation},
             ],
         },
         2 : {
-            desc: 'Você já sabe sobre o que deseja conversar?',
+            desc: 'Que bom que deseja conversar! Então, você já tem alguma idéia sobre o que vai querer desabafar?',
             options: [
-                {desc: 'Sim', goal: '3'},
-                {desc: 'Não', goal: '4'},
+                {desc: 'Sim.', goal: '3'},
+                {desc: 'Não.', goal: '4'},
             ],
         },
         3 : {
-            desc: 'Você quer desabafar exclusivamente sobre algo que você sente ou sobre algo que está acontecendo?',
+            desc: 'Isso já ajuda bastante! Certo, esse assunto tem a ver com algo que você vem sentindo e pensando ou é por causa de algo que aconteceu ou vem acontecendo?',
             options: [
-                {desc: 'Sentimento', goal: 'B1'},
-                {desc: 'Experiência', goal: 'B2'},
+                {desc: 'Algo que eu sinto.', goal: 'B1'},
+                {desc: 'Algo que aconteceu.', goal: 'B2'},
             ],
         },
         4 : {
-            desc: '4. Deseja receber auxilio para elaborar o que está sentindo?',
+            desc: 'Entendo. A gente pode passar por algumas perguntinhas para te ajudar a elaborar melhor o que você está sentindo, para que você possa escrever seu desabafo com mais segurança. Você deseja passar por essas perguntinhas mesmo ou prefere escrever logo seu relato?',
             options: [
-                {desc: 'Sim', goal: 'A1'},
-                {desc: 'Não', goal: navigation},
+                {desc: 'Responder perguntas.', goal: 'A1'},
+                {desc: 'Escrever relato logo', goal: '5'},
+            ],
+        },
+        5 : {
+            desc: 'Prontinho, agora eu posso deixar você sozinho para escrever seu desabafo! Fique a vontade, tome seu tempo e volte sempre que precisar, estarei aqui te esperando!',
+            options: [
+                {desc: 'Obrigado.', goal: navigation, categoria: 'Não definido'},
+                {desc: 'Tchau.', goal: navigation, categoria: 'Não definido'},
+                {desc: 'Até a próxima.', goal: navigation, categoria: 'Não definido'},
             ],
         },
         'A1' : {
-            desc: 'A.1. Qual sentimento você diria ser o mais comum no seu dia-a-dia?',
+            desc: 'Primeiro, qual emoção você percebe que te domina? Que mais está presente dentro de você no seu dia-a-dia?',
             options: [
-                {desc: 'Raiva', goal: 'A2'},
-                {desc: 'Cansaço', goal: 'A2'},
-                {desc: 'Tristeza', goal: 'A2'},
-                {desc: 'Tristeza', goal: 'A2'}
+                {desc: 'Medo.', goal: 'A2'},
+                {desc: 'Tristeza.', goal: 'A2'},
+                {desc: 'Raiva.', goal: 'A2'},
+                {desc: 'Alegria.', goal: 'A2'}
             ],
         },
         'B1' : {
-            desc: 'Esses sentimentos envolvem algum dos seguintes assuntos?',
+            desc: 'E esses sentimentos envolvem algum desses assuntos?',
             options: [
-                {desc: 'Relacionamentos', goal: 'B3'},
-                {desc: 'Quem eu sou', goal: '4'},
-                {desc: 'Outra Coisa (indefinido)', goal: '4'},
-                {desc: 'Meu futuro', goal: '4'},
+                {desc: 'Relacionamentos.', goal: 'B3'},
+                {desc: 'Quem eu sou.', goal: '4'},
+                {desc: 'Meu futuro.', goal: '4'},
+                {desc: 'Outra coisa.', goal: '4'},
             ],
         },
         'B2' : {
-            desc: 'Isso está acontecendo em que ambiente?',
+            desc: 'Algo aconteceu? Em que ambiente ou parte da sua vida isso ocorre?',
             options: [
-                {desc: 'Casa', goal: '4'},
-                {desc: 'Escola', goal: '4'},
-                {desc: 'Trabalho', goal: '4'},
-                {desc: 'JCPM', goal: '4'},
+                {desc: 'Família.', goal: '4'},
+                {desc: 'Escola.', goal: '4'},
+                {desc: 'Trabalho.', goal: '4'},
+                {desc: 'No Instituo JCPM.', goal: '4'},
             ],
         },
         'B3' : {
-            desc: 'Qual desses aspectos sobre relacionamentos mais está lhe afetando?',
+            desc: 'Ah, acho que sei como é. Mas o quê exatamente sobre relacionamentos tem te afetado?',
             options: [
-                {desc: 'Pessoa específica', goal: '4'},
-                {desc: 'Sexualidade', goal: '4'},
-                {desc: 'Amigos', goal: '4'},
+                {desc: 'Uma pessoa.', goal: '4'},
+                {desc: 'Meus amigos.', goal: '4'},
+                {desc: 'Minha sexualidade.', goal: '4'},
             ],
         },
     };
@@ -190,7 +208,7 @@ const styles = StyleSheet.create({
         minWidth: '80%',
         maxWidth: '80%',
         minHeight: '27%',
-        maxHeight: '27%',
+        //maxHeight: '27%',
     },
     /* Estilo do texto da caixa de diálogo */
     bubbleText:{

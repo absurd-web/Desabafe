@@ -22,6 +22,7 @@ class SplashScreen extends Component{
     authenticateSession(){
         const { navigation } = this.props;
         const goal = this.props.route.params.goal;
+        const categoria = this.props.route.params.categoria;
         const getData = async () => {
             try {
             const value = await AsyncStorage.getItem('@token');
@@ -40,6 +41,8 @@ class SplashScreen extends Component{
                             if(goal != 'Login'){
                                 if(goal == 'Chat' && jsonRes.token.level == 0){
                                     navigation.replace('Admin',{token: jsonRes.token});
+                                }else if(goal == 'Mensagem'){
+                                    navigation.replace(goal,{token: jsonRes.token, categoria: categoria});
                                 }else{
                                     navigation.replace(goal,{token: jsonRes.token});
                                 }

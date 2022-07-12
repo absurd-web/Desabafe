@@ -13,13 +13,12 @@ import {
 } from 'react-native';
 
 const MessageScreen = ({route, navigation}) => {
-    const {token} = route.params;
+    const {token, categoria} = route.params;
     const id = token.id;
     const [rascunho,setRascunho] = useState(`Nesse espaço você irá escrever o seu desabafo!
 Quando terminar, você pode enviar, mas também pode mudar de idéia.`);
     const [isDefault, setIsDefault] = useState(false);
     const [conteudo, setConteudo] = useState('');
-    const [categoria, setCategoria] = useState('Escola');
     const [modalVisible, setModalVisible] = useState(false);
     const [isEnviar, setIsEnviar] = useState(true);
     const [isUrgente, setIsUrgente] = useState(false);
