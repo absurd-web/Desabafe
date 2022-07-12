@@ -28,7 +28,7 @@ const BotaoConfirmar = (props) =>{
     );
 }
 const ChatOption = (props) =>{
-    const [categoria,setCategoria] = useState('Não definido');
+    const [categoria,setCategoria] = useState('Indefinido');
     return(
         <View style={styles.innerContainer}>
             <Pressable onPress={()=>props.onPress()} style={props.isSelected ? styles.opcaoSelected : styles.opcao}>
@@ -100,6 +100,7 @@ const ChatScreen = ({route, navigation}) =>{
     const data = {
         1 : {
             desc: 'Olá! Eu sou [NOME], e estou aqui pra te ajudar a enviar seu desabafo de forma segura para que o Instituto JCPM possa te auxiliar de forma adequada. A gente pode conversar um pouco sobre o seu problema antes, ou você pode ir direto para a escrita do desabafo, o que acha?',
+            img: 'pose_0',
             options: [
                 {desc: 'Quero conversar.', goal: '2'},
                 {desc: 'Quero desabafar logo.', goal: navigation},
@@ -107,6 +108,7 @@ const ChatScreen = ({route, navigation}) =>{
         },
         2 : {
             desc: 'Que bom que deseja conversar! Então, você já tem alguma idéia sobre o que vai querer desabafar?',
+            img: 'pose_1',
             options: [
                 {desc: 'Sim.', goal: '3'},
                 {desc: 'Não.', goal: '4'},
@@ -114,6 +116,7 @@ const ChatScreen = ({route, navigation}) =>{
         },
         3 : {
             desc: 'Isso já ajuda bastante! Certo, esse assunto tem a ver com algo que você vem sentindo e pensando ou é por causa de algo que aconteceu ou vem acontecendo?',
+            img: 'pose_0',
             options: [
                 {desc: 'Algo que eu sinto.', goal: 'B1'},
                 {desc: 'Algo que aconteceu.', goal: 'B2'},
@@ -121,6 +124,7 @@ const ChatScreen = ({route, navigation}) =>{
         },
         4 : {
             desc: 'Entendo. A gente pode passar por algumas perguntinhas para te ajudar a elaborar melhor o que você está sentindo, para que você possa escrever seu desabafo com mais segurança. Você deseja passar por essas perguntinhas mesmo ou prefere escrever logo seu relato?',
+            img: 'pose_0',
             options: [
                 {desc: 'Responder perguntas.', goal: 'A1'},
                 {desc: 'Escrever relato logo', goal: '5'},
@@ -128,14 +132,16 @@ const ChatScreen = ({route, navigation}) =>{
         },
         5 : {
             desc: 'Prontinho, agora eu posso deixar você sozinho para escrever seu desabafo! Fique a vontade, tome seu tempo e volte sempre que precisar, estarei aqui te esperando!',
+            img: 'pose_1',
             options: [
-                {desc: 'Obrigado.', goal: navigation, categoria: 'Não definido'},
-                {desc: 'Tchau.', goal: navigation, categoria: 'Não definido'},
-                {desc: 'Até a próxima.', goal: navigation, categoria: 'Não definido'},
+                {desc: 'Obrigado.', goal: navigation},
+                {desc: 'Tchau.', goal: navigation},
+                {desc: 'Até a próxima.', goal: navigation},
             ],
         },
         'A1' : {
             desc: 'Primeiro, qual emoção você percebe que te domina? Que mais está presente dentro de você no seu dia-a-dia?',
+            img: 'pose_0',
             options: [
                 {desc: 'Medo.', goal: 'A2'},
                 {desc: 'Tristeza.', goal: 'A2'},
@@ -143,33 +149,83 @@ const ChatScreen = ({route, navigation}) =>{
                 {desc: 'Alegria.', goal: 'A2'}
             ],
         },
+        'A2' : {
+            desc: 'Dentre as palavras a seguir, qual você acha que melhor te define?',
+            img: 'pose_0',
+            options: [
+                {desc: 'Amavél.', goal: 'A3'},
+                {desc: 'Ansioso.', goal: 'A3'},
+                {desc: 'Calmo.', goal: 'A3'},
+                {desc: 'Irritado.', goal: 'A3'}
+            ],
+        },
+        'A3' : {
+            desc: 'A quanto tempo a razão do seu desabafo vem acontecendo?',
+            img: 'pose_4',
+            options: [
+                {desc: 'Pouco tempo.', goal: 'A3'},
+                {desc: 'Meses.', goal: 'A3'},
+                {desc: 'Anos.', goal: 'A3'},
+                {desc: 'Desde sempre.', goal: 'A3'}
+            ],
+        },
+        'A4' : {
+            desc: 'Você sabe que as coisas eventualmente melhoram, não sabe? A vida é cheia de coisas boas e ruins, e as ruins nunca duram para sempre.',
+            img: 'pose_2',
+            options: [
+                {desc: 'Sei sim.', goal: 'A5'},
+                {desc: 'Eu espero que sim.', goal: 'A5'},
+                {desc: 'Não sei.', goal: 'A5'},
+                {desc: 'Acho que não.', goal: 'A5'}
+            ],
+        },
+        'A5' : {
+            desc: 'Entendo. Mas, quando as coisas não estão boas, com quem você sente que pode contar?',
+            img: 'pose_4',
+            options: [
+                {desc: 'Amigo(s).', goal: '5'},
+                {desc: 'Família.', goal: '5'},
+                {desc: 'Outro.', goal: '5'},
+                {desc: 'Ninguém.', goal: '5'}
+            ],
+        },
         'B1' : {
             desc: 'E esses sentimentos envolvem algum desses assuntos?',
+            img: 'pose_4',
             options: [
                 {desc: 'Relacionamentos.', goal: 'B3'},
-                {desc: 'Quem eu sou.', goal: '4'},
-                {desc: 'Meu futuro.', goal: '4'},
-                {desc: 'Outra coisa.', goal: '4'},
+                {desc: 'Quem eu sou.', goal: '4', categoria: 'Identidade'},
+                {desc: 'Meu futuro.', goal: '4', categoria: 'Futuro'},
+                {desc: 'Outra coisa.', goal: '4', categoria: 'Indefinido'},
             ],
         },
         'B2' : {
             desc: 'Algo aconteceu? Em que ambiente ou parte da sua vida isso ocorre?',
+            img: 'pose_2',
             options: [
-                {desc: 'Família.', goal: '4'},
-                {desc: 'Escola.', goal: '4'},
-                {desc: 'Trabalho.', goal: '4'},
-                {desc: 'No Instituo JCPM.', goal: '4'},
+                {desc: 'Família.', goal: '4', categoria: 'Família'},
+                {desc: 'Escola.', goal: '4', categoria: 'Escola'},
+                {desc: 'Trabalho.', goal: '4', categoria: 'Trabalho'},
+                {desc: 'No Instituo JCPM.', goal: '4', categoria: 'Instituto'},
             ],
         },
         'B3' : {
             desc: 'Ah, acho que sei como é. Mas o quê exatamente sobre relacionamentos tem te afetado?',
+            img: 'pose_2',
             options: [
-                {desc: 'Uma pessoa.', goal: '4'},
-                {desc: 'Meus amigos.', goal: '4'},
-                {desc: 'Minha sexualidade.', goal: '4'},
+                {desc: 'Uma pessoa.', goal: '4', categoria: 'Sobre alguém'},
+                {desc: 'Meus amigos.', goal: '4', categoria: 'Amigos'},
+                {desc: 'Minha sexualidade.', goal: '4', categoria: 'Sexualidade'},
             ],
         },
     };
+    const images ={
+        pose_0 : require('./images/pose_0.png'),
+        pose_1 : require('./images/pose_1.png'),
+        pose_2 : require('./images/pose_2.png'),
+        pose_3 : require('./images/pose_3.png'),
+        pose_4 : require('./images/pose_4.png'),
+    }
     return(
         //Caixa de mensagem do app
         <View style={styles.container}>
@@ -182,7 +238,7 @@ const ChatScreen = ({route, navigation}) =>{
             {/* Imagem do mascote  */}
             <Image
                 style={styles.mascote}
-                source={require('./images/pet.png')}
+                source={images[data[dataIndex].img]}
             />
             {/* Opções de diálogo */}
             <ChatOptions dataIndex={dataIndex} data={data} navigation={navigation}/>
