@@ -159,6 +159,7 @@ const styles = StyleSheet.create({
     minWidth: '80%',
     backgroundColor: '#D2D7DF',
     marginLeft: 40,
+    marginRight: 40,
     borderRadius: 10,
     marginBottom: 10,
   },
@@ -176,6 +177,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginTop: 15,
     marginBottom: 20,
+    marginRight:20,
   },
   envios:{
     fontFamily: 'Roboto-Bold',
