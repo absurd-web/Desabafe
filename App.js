@@ -7,6 +7,7 @@ import ChatScreen from './components/screens/ChatScreen';
 import AdminScreen from './components/screens/AdminScreen';
 import MensagensScreen from './components/screens/MensagensScreen';
 import MessageScreen from './components/screens/MessageScreen';
+import SentScreen from './components/screens/SentScreen';
 import ConfigScreen from './components/screens/ConfigScreen';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -35,6 +36,10 @@ const App: () => Node = () => {
           name="Mensagem" 
           component={MessageScreen} 
           options={({navigation}) =>({headerTitle: 'Escreva seu relato',headerRight: ()=> <ConfigButton onPress={()=>navigation.navigate('Splash',{goal: 'Config'})} />,})}/>
+        <Stack.Screen
+          name="Sent" 
+          component={SentScreen}
+          options={{headerShown: false}}/>
         <Stack.Screen 
           name="Config" 
           component={ConfigScreen} 

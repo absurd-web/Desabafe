@@ -71,7 +71,7 @@ Quando terminar, você pode enviar, mas também pode mudar de idéia.`;
                       setIsError(false);
                       setMessage(jsonRes.message);
                       await AsyncStorage.removeItem(token.name);
-                      navigation.navigate('Chat');
+                      navigation.navigate('Sent');
                   }
               } catch (err) {
                   console.log(err);
