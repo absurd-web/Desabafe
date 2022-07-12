@@ -131,17 +131,17 @@ const styles = StyleSheet.create({
     width: 24,
     height: 20,
     marginTop: 5,
-    alignSelf: 'flex-end',
+    marginLeft: 'auto',
   },
   icons:{
     width: 40,
     height: 40,
-    marginLeft: 15,
   },
   row: {
     flexDirection: 'row',
     flexWrap: 'wrap',
     marginTop: 15,
+    paddingHorizontal: 20,
   },
   scrollView:{
     backgroundColor: 'white',
