@@ -13,18 +13,25 @@ import {
     ActivityIndicator,
     SafeAreaView,
     ScrollView,
+    Image,
 } from 'react-native';
 
 const EnviosView = (props) =>{
+    const images={anonimo: require('./images/icons/anonym_user_icon.png'),usuario: require('./images/icons/user_icon.png')};
     let data = props.data;
     data = data.reverse();
     return(
       data.map((item,index)=>{
         return (
           <View style={styles.box} key={index}>
-            <Text style={styles.textUser}>{item.usuario === null ? 'Anônimo' : item.usuario.NomeUsuario}{item.Urgente && ' Urgente'}</Text>
+            <View style={styles.row}>
+              <Image
+              style={styles.icons}
+              source={item.usuario == null ? images.anonimo : images.usuario}
+              />
+              <Text style={styles.textUser}>{item.usuario === null ? 'Anônimo' : item.usuario.NomeUsuario}</Text>{item.Urgente && <Image style={styles.urgente} source={require('./images/icons/urgente_icon.png')}/>}
+            </View>
             <Text style={styles.textContent}>{item.Conteudo}</Text>
-            
           </View>
         );
       })
@@ -120,6 +127,22 @@ const styles = StyleSheet.create({
     alignItems: 'flex-start',
     backgroundColor: 'white', 
   },
+  urgente:{
+    width: 24,
+    height: 20,
+    marginTop: 5,
+    alignSelf: 'flex-end',
+  },
+  icons:{
+    width: 40,
+    height: 40,
+    marginLeft: 15,
+  },
+  row: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    marginTop: 15,
+  },
   scrollView:{
     backgroundColor: 'white',
     marginHorizontal: 0,
@@ -142,15 +165,16 @@ const styles = StyleSheet.create({
   textUser:{
     color: 'black',
     fontFamily: 'Roboto-Bold',
-    marginLeft: 20,
-    fontSize: 19,
-    marginVertical: 20,
+    marginLeft: 15,
+    fontSize: 18,
+    marginTop: 5,
   },
   textContent:{
     color: 'black',
     fontFamily: 'Roboto-Regular',
     marginLeft: 20,
-    fontSize: 18,
+    fontSize: 16,
+    marginTop: 15,
     marginBottom: 20,
   },
   envios:{

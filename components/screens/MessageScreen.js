@@ -205,6 +205,7 @@ const styles = StyleSheet.create({
     minWidth: '70%',
     minHeight: 55,
     marginBottom: '2%',
+    marginTop: 10,
   },
   button2: {
     backgroundColor: 'white',
