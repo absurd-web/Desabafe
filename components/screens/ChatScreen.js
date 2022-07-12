@@ -163,10 +163,10 @@ const ChatScreen = ({route, navigation}) =>{
             desc: 'A quanto tempo a razão do seu desabafo vem acontecendo?',
             img: 'pose_4',
             options: [
-                {desc: 'Pouco tempo.', goal: 'A3'},
-                {desc: 'Meses.', goal: 'A3'},
-                {desc: 'Anos.', goal: 'A3'},
-                {desc: 'Desde sempre.', goal: 'A3'}
+                {desc: 'Pouco tempo.', goal: 'A4'},
+                {desc: 'Meses.', goal: 'A4'},
+                {desc: 'Anos.', goal: 'A4'},
+                {desc: 'Desde sempre.', goal: 'A4'}
             ],
         },
         'A4' : {
