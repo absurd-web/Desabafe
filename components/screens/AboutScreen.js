@@ -79,7 +79,7 @@ const AboutScreen = () =>{
                 <Text style={styles.buttonText}>Kaio Forte (designer)</Text>
             </Pressable>
 
-            <Pressable style={styles.button} onPress={()=> loadInBrowser('https://google.com')}>
+            <Pressable style={styles.button} onPress={()=> loadInBrowser('https://www.linkedin.com/in/nickolas-lima-164347209/')}>
                 <Text style={styles.buttonText}>Nickolas Gabriel (revisor)</Text>
             </Pressable>
 
