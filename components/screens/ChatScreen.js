@@ -28,7 +28,6 @@ const BotaoConfirmar = (props) =>{
     );
 }
 const ChatOption = (props) =>{
-    const [categoria,setCategoria] = useState('Indefinido');
     return(
         <View style={styles.innerContainer}>
             <Pressable onPress={()=>props.onPress()} style={props.isSelected ? styles.opcaoSelected : styles.opcao}>
@@ -36,12 +35,9 @@ const ChatOption = (props) =>{
             </Pressable>
             {props.isSelected && <BotaoConfirmar onPress={()=>{
             if(typeof(props.goal) === 'string'){
-                props.navigation.push('Chat',{goal: props.goal});
-                if(props.categoria){
-                    setCategoria(props.categoria);
-                }
+                props.navigation.push('Chat',{goal: props.goal, categoria: props.categoria});
             }else{
-                props.navigation.navigate('Splash',{goal : 'Mensagem',categoria : categoria});
+                props.navigation.navigate('Splash',{goal : 'Mensagem',categoria : props.categoria});
             }
             }}/>}
         </View>
@@ -75,7 +71,7 @@ class ChatOptions extends Component{
         return(
             this.data.map((item,index)=>{
                 return (
-                  <ChatOption key={index} conteudo={item.desc} categoria={item.categoria} goal={item.goal} navigation={this.props.navigation} isSelected={this.state.opcoes[index]} onPress={()=>this.aoPressionar(index)}/>
+                  <ChatOption key={index} conteudo={item.desc} goal={item.goal} navigation={this.props.navigation} categoria={item.categoria ? item.categoria : this.props.categoria} isSelected={this.state.opcoes[index]} onPress={()=>this.aoPressionar(index)}/>
                 );
             })
         );
@@ -83,7 +79,7 @@ class ChatOptions extends Component{
 }
 
 const ChatScreen = ({route, navigation}) =>{
-    const {goal} = route.params;
+    const {goal, categoria} = route.params;
     const [dataIndex, setDataIndex] = goal ? useState(goal) : useState('1');
 /*     useFocusEffect(
         React.useCallback(() => {
@@ -241,7 +237,7 @@ const ChatScreen = ({route, navigation}) =>{
                 source={images[data[dataIndex].img]}
             />
             {/* Opções de diálogo */}
-            <ChatOptions dataIndex={dataIndex} data={data} navigation={navigation}/>
+            <ChatOptions dataIndex={dataIndex} categoria={categoria} data={data} navigation={navigation}/>
         </View>
     );
 };

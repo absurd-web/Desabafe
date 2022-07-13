@@ -43,8 +43,10 @@ class SplashScreen extends Component{
                                     navigation.replace('Admin',{token: jsonRes.token});
                                 }else if(goal == 'Mensagem'){
                                     navigation.replace(goal,{token: jsonRes.token, categoria: categoria});
-                                }else{
+                                }else if(goal == 'Chat'){
                                     navigation.replace(goal,{token: jsonRes.token});
+                                }else{
+                                    navigation.replace(goal,{token: jsonRes.token, goal: 'Indefinido'});
                                 }
                             }else{
                                 this.resetToLogin(navigation);
