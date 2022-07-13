@@ -15,6 +15,7 @@ import {
 const SentScreen = ({navigation}) =>{
     return(
         <View style={styles.container}>
+            <Image style={styles.image} source={require('./images/icons/sent_icon.png')} />
             <Text style={styles.desabafoEnv}>Desabafo enviado</Text>
             <Text style={styles.obrigado}>Obrigado</Text>
             <View style={styles.divisor}/>
@@ -45,6 +46,12 @@ const styles = StyleSheet.create({
         minWidth: '70%',
         minHeight: '8%',
         borderRadius: 30,
+    },
+    image:{
+        width: 200,
+        height: 200,
+        marginTop: '35%',
+        marginBottom: '15%',
     },
     textButton: {
         marginTop: '1%',

@@ -82,7 +82,7 @@ Quando terminar, você pode enviar, mas também pode mudar de idéia.`;
           });
         }else{
           salvarRascunho();
-          navigation.navigate('Splash',{goal:'Chat'});
+          navigation.navigate('Splash',{goal:'Login'});
         }
     }
     return(
