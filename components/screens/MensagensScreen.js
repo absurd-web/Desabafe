@@ -22,18 +22,36 @@ const EnviosView = (props) =>{
     data = data.reverse();
     return(
       data.map((item,index)=>{
-        return (
-          <View style={styles.box} key={index}>
-            <View style={styles.row}>
-              <Image
-              style={styles.icons}
-              source={item.usuario == null ? images.anonimo : images.usuario}
-              />
-              <Text style={styles.textUser}>{item.usuario === null ? 'Anônimo' : item.usuario.NomeUsuario}</Text>{item.Urgente && <Image style={styles.urgente} source={require('./images/icons/urgente_icon.png')}/>}
+        if(props.urgente == true){
+          if(item.Urgente == true){
+            return (
+              <View style={styles.box} key={index}>
+                <View style={styles.row}>
+                  <Image
+                  style={styles.icons}
+                  source={item.usuario == null ? images.anonimo : images.usuario}
+                  />
+                  <Text style={styles.textUser}>{item.usuario === null ? 'Anônimo' : item.usuario.NomeUsuario}</Text>{item.Urgente && <Image style={styles.urgente} source={require('./images/icons/urgente_icon.png')}/>}
+                </View>
+                <Text style={styles.textContent}>{item.Conteudo}</Text>
+              </View>
+            );
+          }
+        }else{
+          return (
+            <View style={styles.box} key={index}>
+              <View style={styles.row}>
+                <Image
+                style={styles.icons}
+                source={item.usuario == null ? images.anonimo : images.usuario}
+                />
+                <Text style={styles.textUser}>{item.usuario === null ? 'Anônimo' : item.usuario.NomeUsuario}</Text>{item.Urgente && <Image style={styles.urgente} source={require('./images/icons/urgente_icon.png')}/>}
+              </View>
+              <Text style={styles.textContent}>{item.Conteudo}</Text>
             </View>
-            <Text style={styles.textContent}>{item.Conteudo}</Text>
-          </View>
-        );
+          );
+        }
+        
       })
     );
 }
@@ -44,7 +62,7 @@ const Envios = (props) =>{
     useEffect(() => {
         getMessageData().then((data) =>{
             if(typeof(data) != 'string'){
-              setEnvios(<EnviosView data={data}/>);
+              setEnvios(<EnviosView urgente={props.urgente} data={data}/>);
             }else{
               setEnvios(
                 <Text>{data}</Text>
@@ -54,7 +72,7 @@ const Envios = (props) =>{
             setEnvios(
             <Text>{data}</Text>
             );});
-    }, [initialCategory]);
+    }, [initialCategory, props.urgente]);
     const getMessageData = async () =>{
         const payload = {
             categoria:initialCategory,
@@ -89,6 +107,7 @@ const MensagensScreen = ({route,navigation}) =>{
     const { token, data, initialCategory } = route.params;
     const formattedData = data.map(x=>x.Categoria);
     const [categoria, setCategoria] = useState(initialCategory);
+    const [apenasUrgente, setApenasUrgente] = useState(false);
     return(
       <SafeAreaView style={styles.container}>
         <ScrollView style={styles.scrollView}>
@@ -115,7 +134,10 @@ const MensagensScreen = ({route,navigation}) =>{
                 </View>
 
             <Text style={styles.envios}>Envios</Text>
-            <Envios token={token} initialCategory={categoria} navigation={navigation}/>
+            <View style={styles.urgenteRow}>
+            <Text>Apenas Urgente?</Text><Switch onValueChange={(value)=>setApenasUrgente(value)} value={apenasUrgente}/>
+            </View>
+            <Envios token={token} urgente={apenasUrgente} initialCategory={categoria} navigation={navigation}/>
         </ScrollView>
       </SafeAreaView>
     );
@@ -136,6 +158,10 @@ const styles = StyleSheet.create({
   icons:{
     width: 40,
     height: 40,
+  },
+  urgenteRow: {
+    flexDirection: 'row',
+    marginLeft: 40,
   },
   row: {
     flexDirection: 'row',
